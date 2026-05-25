@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- ✏️ 修改页面标题：改成对应成员的名字 -->
+  <!-- Edit the page title: change to the corresponding member's name -->
   <title>Shuangyu Zhu — Tiny Alchemists</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -126,30 +126,27 @@
   <main class="relative z-10 max-w-4xl mx-auto px-6 py-12">
 
     <!-- ═══ PROFILE HEADER ═══ -->
-    <!-- ✏️ 修改个人信息：头像、角色、姓名、联系方式 -->
+    <!-- Edit the profile information: avatar, role, name, contact details -->
     <section class="profile-card p-8 sm:p-10 mb-10 anim">
       <div class="flex flex-col sm:flex-row items-center sm:items-start gap-7">
-        <!-- ✏️ 修改头像 -->
+        <!-- Edit the avatar -->
         <div class="flex-shrink-0 w-28 h-28 rounded-2xl bg-sky-pale/50 border-3 border-sky-light flex items-center justify-center"
              style="box-shadow: 0 6px 24px rgba(74,159,217,.15);">
           <span class="text-5xl">💻</span>
         </div>
         <div class="text-center sm:text-left">
-          <!-- ✏️ 修改角色 -->
+          <!-- Edit the role -->
           <span class="inline-block px-3 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wider uppercase mb-2"
                 style="background: #E3F2FD; color: #1565C0;">Head of Programming</span>
-          <!-- ✏️ 修改姓名 -->
+          <!-- Edit the name -->
           <h1 class="font-display text-3xl sm:text-4xl text-slate mb-3">Shuangyu Zhu</h1>
           <div class="space-y-1.5 text-sm text-slate-mid">
-            <!-- ✏️ 修改联系信息 -->
+            <!-- Edit the contact information -->
             <p class="flex items-center gap-2 justify-center sm:justify-start">
-              <span class="text-base">📧</span> shuangyu.zhu@university.edu
+              <span class="text-base">📧</span> shuangyu@kth.se
             </p>
             <p class="flex items-center gap-2 justify-center sm:justify-start">
-              <span class="text-base">💻</span> github.com/shuangyuzhu
-            </p>
-            <p class="flex items-center gap-2 justify-center sm:justify-start">
-              <span class="text-base">🔗</span> linkedin.com/in/shuangyuzhu
+              <span class="text-base">💻</span> github.com/ShuangyuZhu04
             </p>
           </div>
         </div>
@@ -157,7 +154,7 @@
     </section>
 
     <!-- ═══ CONTRIBUTIONS ═══ -->
-    <!-- ✏️ 每个 <article> 是一个贡献卡片，可增删、修改内容 -->
+    <!-- Edit each <article> as a contribution card, which can be added, removed, or modified -->
     <section class="mb-10">
       <div class="text-center mb-10 anim d1">
         <div class="inline-block px-4 py-1 rounded-full bg-sky-pale/50 text-sky-deep text-xs font-bold tracking-wider uppercase mb-3 border border-sky-light/40">
@@ -168,35 +165,32 @@
 
       <div class="space-y-5">
 
-        <!-- ✏️ === 贡献 1: Player Movement System === -->
+        <!-- Contribution 1: Player Movement System -->
         <article class="contrib-card anim d2">
           <div class="flex items-start gap-4">
             <div class="icon-box bg-sky-pale/50 mt-0.5">🏃</div>
             <div>
               <h3 class="font-display text-lg text-slate mb-2">Player Movement &amp; First-Person Controller</h3>
               <p class="text-slate-mid text-sm leading-relaxed mb-3">
-                Programmed the complete first-person player movement system, including momentum-based horizontal movement at ~3 units speed, a single-height jump with vertical impulse reaching ~1 unit, and slightly floaty gravity tuned specifically for platforming control. Implemented air control so players can adjust trajectory mid-jump, and ensured the physics-based movement interacts correctly with potion effects like zero-gravity zones and bouncy surfaces. The movement is network-synchronized so all connected players see consistent, smooth motion.
+                Programmed the first-person player movement system, including momentum-based horizontal movement at ~3 units speed, a jump with vertical impulse, and slightly floaty gravity tuned specifically for platforming control. Implemented air control so players can adjust trajectory mid-jump, and ensured the physics-based movement interacts correctly with potion effects like zero-gravity zones and bouncy surfaces. The movement is network-synchronized so all connected players see consistent, smooth motion. 
               </p>
               <div class="flex flex-wrap gap-1.5">
                 <span class="tag">CharacterController</span>
                 <span class="tag">Physics</span>
                 <span class="tag">First-Person</span>
-                <span class="tag">Network Sync</span>
               </div>
             </div>
           </div>
         </article>
 
-        <!-- ✏️ === 贡献 2: General Gameplay Programming === -->
+        <!-- Contribution 2: General Gameplay Programming -->
         <article class="contrib-card anim d3">
           <div class="flex items-start gap-4">
             <div class="icon-box bg-mint-soft/40 mt-0.5">⚗️</div>
             <div>
               <h3 class="font-display text-lg text-slate mb-2">Core Alchemy &amp; Brewing System</h3>
               <p class="text-slate-mid text-sm leading-relaxed mb-3">
-                Implemented the potion brewing pipeline according to the GDD recipe validation rules: checking for at most 1 base ingredient, at most 3 modifier ingredients, and no duplicates. When a valid recipe is brewed, three identical potions pop out of the cauldron; invalid recipes trigger a cauldron explosion with knockback and fire effects. Built the
-                <code class="c">BaseEffect</code> /
-                <code class="c">ModifierEffect</code> architecture supporting all 6 modifiers (Fire, Size, Float, Bouncy, Magnetic, Sparkle) combined with 3 base forms (Cloud, Object, Puddle), including special interactions like Fire + Sparkle creating repeated explosions and Bouncy + Magnetic causing repulsion.
+                Implemented the potion brewing pipeline according to the recipe validation rules: checking for at most 1 base ingredient, at most 3 modifier ingredients, and no duplicates. When a valid recipe is brewed, potions pop out of the cauldron; invalid recipes trigger a cauldron explosion with knockback effects. Built the architecture supporting all 6 modifiers (Fire, Size, Float, Bouncy, Magnetic, Sparkle) combined with 3 base forms (Cloud, Object, Puddle).
               </p>
               <div class="flex flex-wrap gap-1.5">
                 <span class="tag">Alchemy System</span>
@@ -208,41 +202,20 @@
           </div>
         </article>
 
-        <!-- ✏️ === 贡献 3: Player Interaction === -->
+        <!-- Contribution 3: Player Interaction -->
         <article class="contrib-card anim d4">
           <div class="flex items-start gap-4">
             <div class="icon-box bg-peach-soft/30 mt-0.5">🎯</div>
             <div>
               <h3 class="font-display text-lg text-slate mb-2">Player Interaction &amp; Inventory System</h3>
               <p class="text-slate-mid text-sm leading-relaxed mb-3">
-                Built the complete player interaction system using raycast-based detection within ~1 unit range. Players can Pick Up holdable objects (ingredients, potions, plant pots) into a 3-slot inventory, Drop items with a gentle forward toss, or Throw them with enough force (~10 units) to break potions on impact. Implemented the
-                <code class="c">IInteractable</code> interface for cauldrons and other world objects, and the
-                <code class="c">Holdable</code> component with visual staff-levitation feedback. Inventory slot switching is supported via number keys and mouse scroll.
+                Built the player interaction system. Players can Pick Up holdable objects (ingredients, potions, plant pots), Drop items with a gentle forward toss, or Throw them with enough force (~10 units) to break potions on impact. Implemented the interface for cauldrons and plantpot.
               </p>
               <div class="flex flex-wrap gap-1.5">
                 <span class="tag">Raycasting</span>
                 <span class="tag">Inventory</span>
                 <span class="tag">IInteractable</span>
                 <span class="tag">Holdable</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- ✏️ === 贡献 4: Playtesting === -->
-        <article class="contrib-card anim d5">
-          <div class="flex items-start gap-4">
-            <div class="icon-box bg-honey-light/40 mt-0.5">🧪</div>
-            <div>
-              <h3 class="font-display text-lg text-slate mb-2">Playtesting &amp; Physics Debugging</h3>
-              <p class="text-slate-mid text-sm leading-relaxed mb-3">
-                Conducted extensive playtesting sessions to verify physics consistency across all potion combinations, ensuring interactions like magnetic attraction, bouncy collisions, and zero-gravity zones produce predictable yet entertaining results. Identified and fixed collision issues including objects clipping through cauldrons, player-object penetration during pickup, and slope movement instabilities. Tuned the "slightly floaty" gravity feel to balance platforming precision with the chaotic fun the game targets.
-              </p>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="tag">QA Testing</span>
-                <span class="tag">Physics Tuning</span>
-                <span class="tag">Collision Debugging</span>
-                <span class="tag">Balance</span>
               </div>
             </div>
           </div>
