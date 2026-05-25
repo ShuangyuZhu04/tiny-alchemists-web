@@ -3,28 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tiny Alchemists</title>
+  <!-- ✏️ 修改页面标题：改下面 <title> 标签里的文字 -->
+  <title>Tiny Alchemists — A Cozy Multiplayer Party Game</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            parchment: '#f5e6c8',
-            ink: '#1a0e2e',
-            'deep-purple': '#2d1b4e',
-            'mystic-gold': '#d4a843',
-            'ember-orange': '#e8853b',
-            'potion-green': '#4ade80',
-            'cauldron-dark': '#0d0a1a',
-            'vial-purple': '#7c3aed',
+            'sky-pri':    '#4A9FD9',
+            'sky-deep':   '#2E7CB8',
+            'sky-light':  '#7DBDE8',
+            'sky-pale':   '#D4EAFB',
+            'sky-bg':     '#F0F7FD',
+            'sky-card':   '#F7FBFF',
+            peach:        '#F5A67B',
+            'peach-soft': '#FBCDB5',
+            'peach-bg':   '#FFF5EF',
+            coral:        '#F07654',
+            honey:        '#F5C042',
+            'honey-light':'#FCEABB',
+            mint:         '#7DD3B4',
+            'mint-soft':  '#C2EDDB',
+            slate:        '#2A3B4D',
+            'slate-mid':  '#4A6178',
+            'slate-light':'#7A93A9',
           },
           fontFamily: {
-            display: ['"Cinzel Decorative"', 'serif'],
-            body: ['"Crimson Pro"', 'serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
+            display: ['"Lilita One"', 'cursive'],
+            body:    ['"Nunito"', 'sans-serif'],
+            mono:    ['"JetBrains Mono"', 'monospace'],
           }
         }
       }
@@ -32,170 +42,206 @@
   </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-    body { background-color: #0d0a1a; color: #f5e6c8; overflow-x: hidden; }
+    body { background: #F0F7FD; color: #2A3B4D; overflow-x: hidden; }
 
-    .bg-particles {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background:
-        radial-gradient(1.5px 1.5px at 20% 30%, rgba(212,168,67,.45) 50%, transparent 100%),
-        radial-gradient(1px 1px at 60% 70%, rgba(124,58,237,.35) 50%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 80% 20%, rgba(212,168,67,.3) 50%, transparent 100%),
-        radial-gradient(1px 1px at 40% 80%, rgba(124,58,237,.25) 50%, transparent 100%);
-      animation: drift 25s linear infinite;
+    .bg-blobs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(85px); opacity: .3; }
+    .blob-1 { width: 500px; height: 500px; background: #D4EAFB; top: -10%; left: -8%; animation: fA 18s ease-in-out infinite; }
+    .blob-2 { width: 420px; height: 420px; background: #FBCDB5; bottom: -5%; right: -6%; animation: fB 22s ease-in-out infinite; }
+    .blob-3 { width: 340px; height: 340px; background: #C2EDDB; top: 45%; right: 12%; animation: fA 20s ease-in-out 3s infinite; }
+    @keyframes fA { 0%,100%{ transform: translate(0,0) scale(1); } 50%{ transform: translate(28px,-22px) scale(1.05); } }
+    @keyframes fB { 0%,100%{ transform: translate(0,0) scale(1); } 50%{ transform: translate(-22px,18px) scale(1.07); } }
+
+    @keyframes bounce1 { 0%,100%{ transform: translateY(0) rotate(-5deg); } 50%{ transform: translateY(-14px) rotate(5deg); } }
+    @keyframes bounce2 { 0%,100%{ transform: translateY(0) rotate(3deg); }  50%{ transform: translateY(-16px) rotate(-4deg); } }
+    @keyframes bounce3 { 0%,100%{ transform: translateY(0); }              50%{ transform: translateY(-10px) rotate(6deg); } }
+    .potion-1 { animation: bounce1 3.5s ease-in-out infinite; }
+    .potion-2 { animation: bounce2 4.2s ease-in-out .8s infinite; }
+    .potion-3 { animation: bounce3 3.8s ease-in-out 1.6s infinite; }
+
+    @keyframes wiggle { 0%,100%{ transform: rotate(-1.2deg); } 50%{ transform: rotate(1.2deg); } }
+
+    .nav-pill { padding: .45rem 1rem; border-radius: 9999px; transition: background .2s, color .2s; }
+    .nav-pill:hover { background: rgba(74,159,217,.1); color: #2E7CB8; }
+    .nav-pill.active { background: #4A9FD9; color: #fff; }
+
+    .cta-btn {
+      position: relative; overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(74,159,217,.25);
     }
-    @keyframes drift { 0% { transform: translateY(0); } 100% { transform: translateY(-60px); } }
-
-    .gold-glow { text-shadow: 0 0 40px rgba(212,168,67,.35), 0 0 80px rgba(212,168,67,.15); }
-    .purple-glow { box-shadow: 0 0 60px rgba(124,58,237,.2), 0 0 120px rgba(124,58,237,.08); }
-
-    @keyframes bubble {
-      0%, 100% { transform: translateY(0) scale(1); opacity: .6; }
-      50%      { transform: translateY(-18px) scale(1.15); opacity: 1; }
+    .cta-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 30px rgba(74,159,217,.35); }
+    .cta-btn:active { transform: translateY(-1px) scale(1.01); }
+    .cta-btn::after {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.2) 50%, transparent 70%);
+      transform: translateX(-100%); transition: transform .45s;
     }
-    .bubble-1 { animation: bubble 4s ease-in-out infinite; }
-    .bubble-2 { animation: bubble 5.5s ease-in-out 1s infinite; }
-    .bubble-3 { animation: bubble 3.8s ease-in-out 2.2s infinite; }
-
-    @keyframes shimmer {
-      0%   { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-    .title-shimmer {
-      background: linear-gradient(90deg, #d4a843 0%, #fff5d4 25%, #d4a843 50%, #e8853b 75%, #d4a843 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 6s linear infinite;
-    }
-
-    .ornament { display: flex; align-items: center; gap: 1rem; justify-content: center; }
-    .ornament::before, .ornament::after {
-      content: ''; width: 80px; height: 1px;
-      background: linear-gradient(90deg, transparent, #d4a843, transparent);
-    }
-
-    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-    .nav-link { position: relative; padding-bottom: 2px; }
-    .nav-link::after {
-      content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px;
-      background: #d4a843; transition: width .3s ease, left .3s ease;
-    }
-    .nav-link:hover::after { width: 100%; left: 0; }
-
-    .cta-btn { position: relative; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
-    .cta-btn::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.12) 50%, transparent 70%);
-      transform: translateX(-100%); transition: transform .5s ease;
-    }
-    .cta-btn:hover::before { transform: translateX(100%); }
-    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,168,67,.35); }
+    .cta-btn:hover::after { transform: translateX(100%); }
 
     .video-frame {
-      border: 1px solid rgba(212,168,67,.25);
-      background: linear-gradient(145deg, rgba(45,27,78,.6), rgba(13,10,26,.8));
-      backdrop-filter: blur(4px);
-      transition: border-color .4s ease, box-shadow .4s ease;
+      background: #fff; border: 2px dashed #7DBDE8; border-radius: 1.25rem;
+      transition: border-color .3s, box-shadow .3s;
     }
-    .video-frame:hover { border-color: rgba(212,168,67,.5); box-shadow: 0 0 40px rgba(124,58,237,.15); }
+    .video-frame:hover { border-color: #4A9FD9; box-shadow: 0 8px 30px rgba(74,159,217,.12); }
 
     .feature-card {
-      background: linear-gradient(160deg, rgba(45,27,78,.4) 0%, rgba(13,10,26,.6) 100%);
-      border: 1px solid rgba(212,168,67,.12);
-      transition: border-color .3s ease, transform .3s ease;
+      background: #fff; border: 2px solid transparent; border-radius: 1.25rem;
+      box-shadow: 0 2px 12px rgba(42,59,77,.05);
+      transition: transform .3s, box-shadow .3s, border-color .3s;
     }
-    .feature-card:hover { border-color: rgba(212,168,67,.35); transform: translateY(-4px); }
+    .feature-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(74,159,217,.1); border-color: #D4EAFB; }
+
+    .fade-up { opacity:0; transform: translateY(28px); transition: opacity .7s, transform .7s; }
+    .fade-up.visible { opacity:1; transform: translateY(0); }
   </style>
 </head>
 <body class="font-body antialiased">
 
-  <div class="bg-particles"></div>
+  <div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
 
   <!-- ═══ NAVIGATION ═══ -->
-  <nav class="relative z-30 border-b border-white/5">
-    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-      <a href="index.html" class="font-display text-lg tracking-wider text-mystic-gold flex items-center gap-2">
-        <svg width="28" height="28" viewBox="0 0 100 100" fill="none"><path d="M50 8 L62 38 L95 38 L68 58 L78 90 L50 70 L22 90 L32 58 L5 38 L38 38 Z" fill="#d4a843" opacity=".85"/></svg>
-        Tiny Alchemists
+  <nav class="relative z-30">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <span class="text-3xl leading-none">🧪</span>
+        <!-- ✏️ 修改导航栏 Logo 文字 -->
+        <span class="font-display text-xl text-sky-pri tracking-wide">Tiny Alchemists</span>
       </a>
-      <div class="flex items-center gap-8 text-sm tracking-wide uppercase">
-        <a href="index.html" class="nav-link text-mystic-gold/90 hover:text-mystic-gold transition-colors">Home</a>
-        <a href="about.html" class="nav-link text-parchment/60 hover:text-parchment transition-colors">About Us</a>
+      <div class="flex items-center gap-2 text-sm font-semibold">
+        <!-- ✏️ 修改导航栏按钮文字 -->
+        <a href="index.html" class="nav-pill active">Home</a>
+        <a href="about.html" class="nav-pill text-slate-mid">About Us</a>
       </div>
     </div>
   </nav>
 
   <main class="relative z-10">
 
-    <!-- ═══ HERO ═══ -->
-    <section class="min-h-[92vh] flex flex-col items-center justify-center text-center px-6 pt-8 pb-20">
-      <div class="absolute top-1/4 left-[12%] w-3 h-3 rounded-full bg-vial-purple/40 bubble-1"></div>
-      <div class="absolute top-1/3 right-[15%] w-2 h-2 rounded-full bg-mystic-gold/50 bubble-2"></div>
-      <div class="absolute top-[45%] left-[25%] w-2.5 h-2.5 rounded-full bg-potion-green/30 bubble-3"></div>
+    <!-- ═══ HERO SECTION ═══ -->
+    <section class="min-h-[88vh] flex flex-col items-center justify-center text-center px-6 pt-4 pb-20 relative">
 
-      <p class="text-xs tracking-[.35em] uppercase text-vial-purple/80 mb-6 font-mono">A Multiplayer Alchemy Adventure</p>
+      <div class="absolute top-[18%] left-[10%] text-4xl potion-1 select-none">🧪</div>
+      <div class="absolute top-[25%] right-[12%] text-3xl potion-2 select-none">⚗️</div>
+      <div class="absolute top-[55%] left-[20%] text-2xl potion-3 select-none">✨</div>
+      <div class="absolute bottom-[22%] right-[18%] text-3xl potion-1 select-none" style="animation-delay:2s">🫧</div>
 
-      <h1 class="font-display text-5xl sm:text-7xl md:text-8xl font-black leading-[1.05] title-shimmer gold-glow mb-6">
-        Tiny<br>Alchemists
+      <!-- ✏️ 修改顶部小标签文字 -->
+      <div class="inline-block px-5 py-1.5 rounded-full bg-sky-pale/60 text-sky-deep text-xs font-bold tracking-wider uppercase mb-6 border border-sky-light/50">
+        🎮 Multiplayer Party Game
+      </div>
+
+      <!-- ✏️ 修改游戏主标题 -->
+      <h1 class="font-display text-6xl sm:text-7xl md:text-[5.5rem] leading-[1.05] text-slate mb-2" style="animation: wiggle 4s ease-in-out infinite">
+        Tiny Alchemists
       </h1>
 
-      <div class="ornament text-mystic-gold/50 text-xs mb-8">✦</div>
+      <!-- ✏️ 修改副标题 -->
+      <p class="font-display text-xl sm:text-2xl text-sky-pri mb-6">Brew Together, Laugh Together!</p>
 
-      <p class="max-w-xl text-lg sm:text-xl text-parchment/70 leading-relaxed mb-12 font-light italic">
-        Brew volatile potions, unleash elemental chaos, and outwit your rivals
-        in a competitive cauldron of magic and mischief.
+      <!-- ✏️ 修改 Hero 描述段落 -->
+      <p class="max-w-lg text-base sm:text-lg text-slate-mid leading-relaxed mb-10">
+        Grab your friends and family for a hilarious potion-brewing showdown.
+        Toss ingredients, mix magical concoctions, and cause cauldron chaos
+        in this cozy multiplayer party game!
       </p>
 
-      <a href="about.html"
-         class="cta-btn inline-flex items-center gap-3 px-10 py-4 rounded-lg bg-gradient-to-r from-mystic-gold to-ember-orange text-cauldron-dark font-display text-sm tracking-widest uppercase font-bold">
-        Meet the Alchemists
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        <!-- ✏️ 修改主按钮文字 -->
+        <a href="about.html"
+           class="cta-btn inline-flex items-center gap-2.5 px-9 py-4 rounded-full bg-gradient-to-r from-sky-pri to-sky-deep text-white font-bold text-base tracking-wide">
+          Meet Our Team
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <!-- ✏️ 修改次要按钮文字 -->
+        <a href="#showcase" class="inline-flex items-center gap-2 text-sm font-semibold text-peach hover:text-coral transition-colors">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Watch Trailer
+        </a>
+      </div>
     </section>
 
-    <!-- ═══ TRAILER PLACEHOLDER ═══ -->
-    <section class="max-w-5xl mx-auto px-6 pb-28 fade-up">
-      <div class="video-frame rounded-2xl overflow-hidden aspect-video flex items-center justify-center purple-glow">
+    <!-- ═══ SHOWCASE / TRAILER ═══ -->
+    <section id="showcase" class="max-w-5xl mx-auto px-6 pb-24 fade-up">
+      <div class="video-frame aspect-video flex items-center justify-center">
         <div class="text-center">
-          <svg class="mx-auto mb-4 text-mystic-gold/50" width="64" height="64" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          <p class="text-parchment/40 text-sm tracking-wide uppercase font-mono">Game Trailer Coming Soon</p>
+          <div class="text-6xl mb-4">🎬</div>
+          <!-- ✏️ 修改视频占位文字 -->
+          <p class="text-sky-deep/60 text-sm font-bold tracking-wide uppercase">Game Trailer Coming Soon</p>
+          <p class="text-slate-light/50 text-xs mt-2">Stay tuned for gameplay footage!</p>
         </div>
       </div>
     </section>
 
-    <!-- ═══ FEATURES ═══ -->
-    <section class="max-w-5xl mx-auto px-6 pb-32 fade-up">
-      <h2 class="font-display text-2xl text-center text-mystic-gold mb-14 tracking-wide">What Awaits You</h2>
+    <!-- ═══ FEATURE CARDS ═══ -->
+    <section class="max-w-5xl mx-auto px-6 pb-28 fade-up">
+      <div class="text-center mb-12">
+        <!-- ✏️ 修改特性区标题 -->
+        <p class="text-xs font-bold tracking-[.3em] uppercase text-peach/80 mb-2">Why You'll Love It</p>
+        <h2 class="font-display text-3xl sm:text-4xl text-slate">Party Game Highlights</h2>
+      </div>
       <div class="grid sm:grid-cols-3 gap-6">
-        <div class="feature-card rounded-xl p-8 text-center">
-          <div class="text-4xl mb-4">🧪</div>
-          <h3 class="font-display text-sm tracking-wider text-mystic-gold mb-3 uppercase">Potion Brewing</h3>
-          <p class="text-parchment/55 text-sm leading-relaxed">Combine ingredients in your cauldron to discover 5 unique potions — each with devastating effects.</p>
+
+        <!-- ✏️ 修改特性卡片 1：图标、标题、描述 -->
+        <div class="feature-card p-7 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-sky-pale/50 flex items-center justify-center text-3xl">🧪</div>
+          <h3 class="font-display text-lg text-slate mb-2">Potion Brewing</h3>
+          <p class="text-slate-mid text-sm leading-relaxed">Discover 5 unique potion recipes — from bouncy blobs to magnetic mayhem. Experiment with wild ingredient combos!</p>
         </div>
-        <div class="feature-card rounded-xl p-8 text-center">
-          <div class="text-4xl mb-4">⚔️</div>
-          <h3 class="font-display text-sm tracking-wider text-mystic-gold mb-3 uppercase">Multiplayer Chaos</h3>
-          <p class="text-parchment/55 text-sm leading-relaxed">Compete head-to-head with real-time networked gameplay powered by Unity Netcode.</p>
+
+        <!-- ✏️ 修改特性卡片 2：图标、标题、描述 -->
+        <div class="feature-card p-7 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-peach-soft/30 flex items-center justify-center text-3xl">👨‍👩‍👧‍👦</div>
+          <h3 class="font-display text-lg text-slate mb-2">Family Friendly</h3>
+          <p class="text-slate-mid text-sm leading-relaxed">Easy to pick up, impossible to put down. Perfect for game nights with friends, family, and players of all ages.</p>
         </div>
-        <div class="feature-card rounded-xl p-8 text-center">
-          <div class="text-4xl mb-4">💥</div>
-          <h3 class="font-display text-sm tracking-wider text-mystic-gold mb-3 uppercase">Explosive Cauldrons</h3>
-          <p class="text-parchment/55 text-sm leading-relaxed">Linger too long near a bubbling cauldron and… BOOM. Timing is everything.</p>
+
+        <!-- ✏️ 修改特性卡片 3：图标、标题、描述 -->
+        <div class="feature-card p-7 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-mint-soft/40 flex items-center justify-center text-3xl">💥</div>
+          <h3 class="font-display text-lg text-slate mb-2">Cauldron Chaos</h3>
+          <p class="text-slate-mid text-sm leading-relaxed">Watch out for exploding cauldrons! Linger too long and you'll be launched across the map. Timing is everything.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ STATS BANNER ═══ -->
+    <section class="fade-up">
+      <div class="max-w-5xl mx-auto px-6 pb-28">
+        <div class="rounded-2xl bg-gradient-to-r from-sky-pri via-sky-deep to-sky-pri p-8 sm:p-10 text-white text-center">
+          <!-- ✏️ 修改统计横幅标题和四个数据项 -->
+          <h3 class="font-display text-2xl mb-8">Game at a Glance</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <div>
+              <div class="font-display text-4xl mb-1">5</div>
+              <div class="text-white/80 text-sm font-semibold">Unique Potions</div>
+            </div>
+            <div>
+              <div class="font-display text-4xl mb-1">4+</div>
+              <div class="text-white/80 text-sm font-semibold">Players Online</div>
+            </div>
+            <div>
+              <div class="font-display text-4xl mb-1">∞</div>
+              <div class="text-white/80 text-sm font-semibold">Laughs Per Round</div>
+            </div>
+            <div>
+              <div class="font-display text-4xl mb-1">💥</div>
+              <div class="text-white/80 text-sm font-semibold">Explosions Guaranteed</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="relative z-10 border-t border-white/5 py-8 text-center">
-    <p class="text-parchment/30 text-xs tracking-wider font-mono">&copy; 2026 Tiny Alchemists &mdash; A Student Game Project</p>
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="relative z-10 border-t border-slate/6 py-8 text-center bg-sky-card/50">
+    <!-- ✏️ 修改页脚文字 -->
+    <p class="text-slate-light/50 text-xs font-semibold tracking-wider">&copy; 2026 Tiny Alchemists &mdash; A Student Game Project &nbsp;🧪</p>
   </footer>
 
   <script>
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.15 });
+    const obs = new IntersectionObserver(es => { es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold:.12 });
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
   </script>
 </body>

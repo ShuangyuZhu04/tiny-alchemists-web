@@ -3,28 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ✏️ 修改页面标题 -->
   <title>About Us — Tiny Alchemists</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            parchment: '#f5e6c8',
-            ink: '#1a0e2e',
-            'deep-purple': '#2d1b4e',
-            'mystic-gold': '#d4a843',
-            'ember-orange': '#e8853b',
-            'potion-green': '#4ade80',
-            'cauldron-dark': '#0d0a1a',
-            'vial-purple': '#7c3aed',
+            'sky-pri':    '#4A9FD9',
+            'sky-deep':   '#2E7CB8',
+            'sky-light':  '#7DBDE8',
+            'sky-pale':   '#D4EAFB',
+            'sky-bg':     '#F0F7FD',
+            'sky-card':   '#F7FBFF',
+            peach:        '#F5A67B',
+            'peach-soft': '#FBCDB5',
+            coral:        '#F07654',
+            honey:        '#F5C042',
+            'honey-light':'#FCEABB',
+            mint:         '#7DD3B4',
+            'mint-soft':  '#C2EDDB',
+            lavender:     '#B8A9D4',
+            'lavender-soft':'#E8E0F5',
+            slate:        '#2A3B4D',
+            'slate-mid':  '#4A6178',
+            'slate-light':'#7A93A9',
           },
           fontFamily: {
-            display: ['"Cinzel Decorative"', 'serif'],
-            body: ['"Crimson Pro"', 'serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
+            display: ['"Lilita One"', 'cursive'],
+            body:    ['"Nunito"', 'sans-serif'],
+            mono:    ['"JetBrains Mono"', 'monospace'],
           }
         }
       }
@@ -32,221 +43,191 @@
   </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-    body { background-color: #0d0a1a; color: #f5e6c8; overflow-x: hidden; }
+    body { background: #F0F7FD; color: #2A3B4D; overflow-x: hidden; }
 
-    .bg-particles {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background:
-        radial-gradient(1.5px 1.5px at 20% 30%, rgba(212,168,67,.45) 50%, transparent 100%),
-        radial-gradient(1px 1px at 60% 70%, rgba(124,58,237,.35) 50%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 80% 20%, rgba(212,168,67,.3) 50%, transparent 100%),
-        radial-gradient(1px 1px at 40% 80%, rgba(124,58,237,.25) 50%, transparent 100%);
-      animation: drift 25s linear infinite;
-    }
-    @keyframes drift { 0% { transform: translateY(0); } 100% { transform: translateY(-60px); } }
+    .bg-blobs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .28; }
+    .blob-1 { width: 450px; height: 450px; background: #D4EAFB; top: -8%; right: -5%; animation: fA 20s ease-in-out infinite; }
+    .blob-2 { width: 380px; height: 380px; background: #FBCDB5; bottom: -5%; left: -5%; animation: fB 24s ease-in-out infinite; }
+    @keyframes fA { 0%,100%{ transform: translate(0,0) scale(1); } 50%{ transform: translate(25px,-20px) scale(1.05); } }
+    @keyframes fB { 0%,100%{ transform: translate(0,0) scale(1); } 50%{ transform: translate(-20px,18px) scale(1.06); } }
 
-    .nav-link { position: relative; padding-bottom: 2px; }
-    .nav-link::after {
-      content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px;
-      background: #d4a843; transition: width .3s ease, left .3s ease;
-    }
-    .nav-link:hover::after { width: 100%; left: 0; }
+    .nav-pill { padding: .45rem 1rem; border-radius: 9999px; transition: background .2s, color .2s; }
+    .nav-pill:hover { background: rgba(74,159,217,.1); color: #2E7CB8; }
+    .nav-pill.active { background: #4A9FD9; color: #fff; }
 
-    .ornament { display: flex; align-items: center; gap: 1rem; justify-content: center; }
-    .ornament::before, .ornament::after {
-      content: ''; width: 80px; height: 1px;
-      background: linear-gradient(90deg, transparent, #d4a843, transparent);
-    }
-
-    /* ── Team card ── */
+    /* ── Team Card ── */
     .team-card {
       display: flex; align-items: center; gap: 1.25rem;
-      padding: 1.5rem;
-      background: linear-gradient(155deg, rgba(45,27,78,.45) 0%, rgba(13,10,26,.7) 100%);
-      border: 1px solid rgba(212,168,67,.12);
-      border-radius: 1rem;
-      text-decoration: none; color: inherit;
-      cursor: pointer;
-      transition:
-        transform .3s cubic-bezier(.25,.46,.45,.94),
-        box-shadow .35s ease,
-        border-color .3s ease;
+      padding: 1.35rem 1.5rem;
+      background: #fff; border: 2px solid transparent;
+      border-radius: 1.25rem; text-decoration: none; color: inherit; cursor: pointer;
+      box-shadow: 0 2px 10px rgba(42,59,77,.05);
+      transition: transform .3s cubic-bezier(.25,.46,.45,.94), box-shadow .35s, border-color .3s;
     }
     .team-card:hover {
-      transform: scale(1.04) translateY(-4px);
-      border-color: rgba(212,168,67,.55);
-      box-shadow:
-        0 0 30px rgba(212,168,67,.18),
-        0 0 60px rgba(124,58,237,.12),
-        0 12px 40px rgba(0,0,0,.35);
+      transform: scale(1.035) translateY(-5px);
+      border-color: #7DBDE8;
+      box-shadow: 0 12px 35px rgba(74,159,217,.12), 0 0 0 3px rgba(74,159,217,.08);
     }
-    .team-card:active { transform: scale(1.01) translateY(-1px); }
+    .team-card:active { transform: scale(1.01) translateY(-2px); }
 
-    /* Avatar ring glow on hover */
-    .avatar-ring {
-      transition: box-shadow .35s ease;
-    }
-    .team-card:hover .avatar-ring {
-      box-shadow: 0 0 20px rgba(212,168,67,.35), 0 0 40px rgba(124,58,237,.15);
-    }
+    .avatar-ring { border: 3px solid #D4EAFB; transition: border-color .3s, box-shadow .3s; }
+    .team-card:hover .avatar-ring { border-color: #4A9FD9; box-shadow: 0 0 16px rgba(74,159,217,.25); }
 
-    /* Arrow indicator slides on hover */
-    .card-arrow {
-      opacity: 0; transform: translateX(-8px);
-      transition: opacity .3s ease, transform .3s ease;
-    }
-    .team-card:hover .card-arrow {
-      opacity: 1; transform: translateX(0);
-    }
+    .card-arrow { opacity:0; transform: translateX(-8px); transition: opacity .3s, transform .3s; }
+    .team-card:hover .card-arrow { opacity:1; transform: translateX(0); }
 
-    /* Stagger entrance */
-    @keyframes cardIn {
-      from { opacity: 0; transform: translateY(25px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .badge-programmer  { background: #E8F5E9; color: #388E3C; }
+    .badge-artist      { background: #FFF3E0; color: #E65100; }
+    .badge-network     { background: #E3F2FD; color: #1565C0; }
+    .badge-designer    { background: #F3E5F5; color: #7B1FA2; }
+    .badge-sound       { background: #FBE9E7; color: #BF360C; }
+
+    @keyframes cardPop {
+      from { opacity:0; transform: translateY(22px) scale(.97); }
+      to   { opacity:1; transform: translateY(0) scale(1); }
     }
-    .card-animate { animation: cardIn .6s ease forwards; opacity: 0; }
-    .card-animate:nth-child(1) { animation-delay: .1s; }
-    .card-animate:nth-child(2) { animation-delay: .2s; }
-    .card-animate:nth-child(3) { animation-delay: .3s; }
-    .card-animate:nth-child(4) { animation-delay: .4s; }
-    .card-animate-last { animation: cardIn .6s ease forwards; opacity: 0; animation-delay: .5s; }
+    .card-animate { animation: cardPop .55s ease forwards; opacity:0; }
+    .card-animate:nth-child(1) { animation-delay: .08s; }
+    .card-animate:nth-child(2) { animation-delay: .18s; }
+    .card-animate:nth-child(3) { animation-delay: .28s; }
+    .card-animate:nth-child(4) { animation-delay: .38s; }
+    .card-animate-last { animation: cardPop .55s ease forwards; opacity:0; animation-delay: .48s; }
   </style>
 </head>
 <body class="font-body antialiased">
 
-  <div class="bg-particles"></div>
+  <div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
 
   <!-- ═══ NAVIGATION ═══ -->
-  <nav class="relative z-30 border-b border-white/5">
-    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-      <a href="index.html" class="font-display text-lg tracking-wider text-mystic-gold flex items-center gap-2">
-        <svg width="28" height="28" viewBox="0 0 100 100" fill="none"><path d="M50 8 L62 38 L95 38 L68 58 L78 90 L50 70 L22 90 L32 58 L5 38 L38 38 Z" fill="#d4a843" opacity=".85"/></svg>
-        Tiny Alchemists
+  <nav class="relative z-30">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <span class="text-3xl leading-none">🧪</span>
+        <span class="font-display text-xl text-sky-pri tracking-wide">Tiny Alchemists</span>
       </a>
-      <div class="flex items-center gap-8 text-sm tracking-wide uppercase">
-        <a href="index.html" class="nav-link text-parchment/60 hover:text-parchment transition-colors">Home</a>
-        <a href="about.html" class="nav-link text-mystic-gold/90 hover:text-mystic-gold transition-colors">About Us</a>
+      <div class="flex items-center gap-2 text-sm font-semibold">
+        <a href="index.html" class="nav-pill text-slate-mid">Home</a>
+        <a href="about.html" class="nav-pill active">About Us</a>
       </div>
     </div>
   </nav>
 
-  <main class="relative z-10 max-w-5xl mx-auto px-6 py-20">
+  <main class="relative z-10 max-w-5xl mx-auto px-6 py-16">
 
-    <!-- Header -->
-    <header class="text-center mb-16">
-      <p class="text-xs tracking-[.35em] uppercase text-vial-purple/80 mb-4 font-mono">The Guild</p>
-      <h1 class="font-display text-4xl sm:text-5xl text-mystic-gold mb-4 tracking-wide" style="text-shadow: 0 0 40px rgba(212,168,67,.25);">About Us</h1>
-      <div class="ornament text-mystic-gold/50 text-xs mb-6">✦</div>
-      <p class="max-w-lg mx-auto text-parchment/60 text-lg leading-relaxed italic">
-        Five student developers forging magic through code, art, and a healthy dose of caffeine.
+    <!-- ═══ PAGE HEADER ═══ -->
+    <header class="text-center mb-14">
+      <!-- ✏️ 修改顶部小标签 -->
+      <div class="inline-block px-4 py-1 rounded-full bg-sky-pale/50 text-sky-deep text-xs font-bold tracking-wider uppercase mb-4 border border-sky-light/40">
+        🎉 The Team
+      </div>
+      <!-- ✏️ 修改页面大标题 -->
+      <h1 class="font-display text-4xl sm:text-5xl text-slate mb-3">Meet Our Guild</h1>
+      <!-- ✏️ 修改页面副标题描述 -->
+      <p class="max-w-md mx-auto text-slate-mid text-base leading-relaxed">
+        Five student developers on a quest to build the coziest, most chaotic multiplayer party game ever.
       </p>
     </header>
 
-    <!-- ═══ TEAM GRID: 2×2 + 1 centered ═══ -->
+    <!-- ═══ TEAM GRID: 2×2 + 1 CENTERED ═══ -->
+    <!-- ✏️ 每张卡片内可修改：姓名、角色、邮箱、社交链接 -->
+    <!-- ✏️ 修改 href="profile.html?member=xxx" 来指向不同的个人页面 -->
 
-    <!-- Row 1 & 2: 2×2 grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
 
-      <!-- Card 1 -->
+      <!-- ✏️ === 团队成员 1 === -->
       <a href="profile.html?member=alex" class="team-card card-animate" aria-label="View Alex Chen's profile">
-        <div class="avatar-ring flex-shrink-0 w-20 h-20 rounded-full border-2 border-mystic-gold/30 bg-deep-purple/60 flex items-center justify-center overflow-hidden">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="text-mystic-gold/60">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-          </svg>
+        <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-sky-pale/40 flex items-center justify-center">
+          <span class="text-3xl">🧑‍💻</span><!-- ✏️ 修改头像 emoji 或替换为 <img> -->
         </div>
         <div class="flex-1 min-w-0">
-          <h3 class="font-display text-base text-mystic-gold tracking-wide mb-0.5">Alex Chen</h3>
-          <p class="text-vial-purple text-xs font-mono tracking-wide mb-2 uppercase">Lead Programmer</p>
-          <p class="text-parchment/45 text-sm truncate">alex.chen@university.edu</p>
-          <p class="text-parchment/30 text-xs font-mono mt-1">GitHub · LinkedIn</p>
+          <h3 class="font-display text-lg text-slate leading-tight">Alex Chen</h3><!-- ✏️ 姓名 -->
+          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-programmer">Lead Programmer</span><!-- ✏️ 角色 -->
+          <p class="text-slate-mid/70 text-sm truncate">alex.chen@university.edu</p><!-- ✏️ 邮箱 -->
+          <p class="text-slate-light/50 text-xs font-mono mt-0.5">GitHub · LinkedIn</p><!-- ✏️ 社交链接 -->
         </div>
-        <div class="card-arrow text-mystic-gold/60 flex-shrink-0">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        <div class="card-arrow text-sky-pri flex-shrink-0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
         </div>
       </a>
 
-      <!-- Card 2 -->
+      <!-- ✏️ === 团队成员 2 === -->
       <a href="profile.html?member=maya" class="team-card card-animate" aria-label="View Maya Lindström's profile">
-        <div class="avatar-ring flex-shrink-0 w-20 h-20 rounded-full border-2 border-mystic-gold/30 bg-deep-purple/60 flex items-center justify-center overflow-hidden">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="text-mystic-gold/60">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-          </svg>
+        <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-peach-soft/25 flex items-center justify-center">
+          <span class="text-3xl">🎨</span>
         </div>
         <div class="flex-1 min-w-0">
-          <h3 class="font-display text-base text-mystic-gold tracking-wide mb-0.5">Maya Lindström</h3>
-          <p class="text-vial-purple text-xs font-mono tracking-wide mb-2 uppercase">3D Artist &amp; VFX</p>
-          <p class="text-parchment/45 text-sm truncate">maya.lindstrom@university.edu</p>
-          <p class="text-parchment/30 text-xs font-mono mt-1">ArtStation · Behance</p>
+          <h3 class="font-display text-lg text-slate leading-tight">Maya Lindström</h3>
+          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-artist">3D Artist &amp; VFX</span>
+          <p class="text-slate-mid/70 text-sm truncate">maya.lindstrom@university.edu</p>
+          <p class="text-slate-light/50 text-xs font-mono mt-0.5">ArtStation · Behance</p>
         </div>
-        <div class="card-arrow text-mystic-gold/60 flex-shrink-0">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        <div class="card-arrow text-sky-pri flex-shrink-0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
         </div>
       </a>
 
-      <!-- Card 3 -->
+      <!-- ✏️ === 团队成员 3 === -->
       <a href="profile.html?member=omar" class="team-card card-animate" aria-label="View Omar Khalil's profile">
-        <div class="avatar-ring flex-shrink-0 w-20 h-20 rounded-full border-2 border-mystic-gold/30 bg-deep-purple/60 flex items-center justify-center overflow-hidden">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="text-mystic-gold/60">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-          </svg>
+        <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-sky-pale/30 flex items-center justify-center">
+          <span class="text-3xl">🌐</span>
         </div>
         <div class="flex-1 min-w-0">
-          <h3 class="font-display text-base text-mystic-gold tracking-wide mb-0.5">Omar Khalil</h3>
-          <p class="text-vial-purple text-xs font-mono tracking-wide mb-2 uppercase">Network Engineer</p>
-          <p class="text-parchment/45 text-sm truncate">omar.khalil@university.edu</p>
-          <p class="text-parchment/30 text-xs font-mono mt-1">GitHub · Twitter</p>
+          <h3 class="font-display text-lg text-slate leading-tight">Omar Khalil</h3>
+          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-network">Network Engineer</span>
+          <p class="text-slate-mid/70 text-sm truncate">omar.khalil@university.edu</p>
+          <p class="text-slate-light/50 text-xs font-mono mt-0.5">GitHub · Twitter</p>
         </div>
-        <div class="card-arrow text-mystic-gold/60 flex-shrink-0">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        <div class="card-arrow text-sky-pri flex-shrink-0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
         </div>
       </a>
 
-      <!-- Card 4 -->
+      <!-- ✏️ === 团队成员 4 === -->
       <a href="profile.html?member=sofia" class="team-card card-animate" aria-label="View Sofia Park's profile">
-        <div class="avatar-ring flex-shrink-0 w-20 h-20 rounded-full border-2 border-mystic-gold/30 bg-deep-purple/60 flex items-center justify-center overflow-hidden">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="text-mystic-gold/60">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-          </svg>
+        <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-mint-soft/30 flex items-center justify-center">
+          <span class="text-3xl">🎲</span>
         </div>
         <div class="flex-1 min-w-0">
-          <h3 class="font-display text-base text-mystic-gold tracking-wide mb-0.5">Sofia Park</h3>
-          <p class="text-vial-purple text-xs font-mono tracking-wide mb-2 uppercase">Game Designer</p>
-          <p class="text-parchment/45 text-sm truncate">sofia.park@university.edu</p>
-          <p class="text-parchment/30 text-xs font-mono mt-1">Portfolio · LinkedIn</p>
+          <h3 class="font-display text-lg text-slate leading-tight">Sofia Park</h3>
+          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-designer">Game Designer</span>
+          <p class="text-slate-mid/70 text-sm truncate">sofia.park@university.edu</p>
+          <p class="text-slate-light/50 text-xs font-mono mt-0.5">Portfolio · LinkedIn</p>
         </div>
-        <div class="card-arrow text-mystic-gold/60 flex-shrink-0">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        <div class="card-arrow text-sky-pri flex-shrink-0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
         </div>
       </a>
     </div>
 
-    <!-- Row 3: 5th card centered -->
+    <!-- ✏️ === 团队成员 5（居中） === -->
     <div class="flex justify-center">
-      <a href="profile.html?member=liam" class="team-card card-animate-last w-full md:w-[calc(50%-0.75rem)]" aria-label="View Liam Voss's profile">
-        <div class="avatar-ring flex-shrink-0 w-20 h-20 rounded-full border-2 border-mystic-gold/30 bg-deep-purple/60 flex items-center justify-center overflow-hidden">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="text-mystic-gold/60">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-          </svg>
+      <a href="profile.html?member=liam" class="team-card card-animate-last w-full md:w-[calc(50%-0.625rem)]" aria-label="View Liam Voss's profile">
+        <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-peach-soft/20 flex items-center justify-center">
+          <span class="text-3xl">🔊</span>
         </div>
         <div class="flex-1 min-w-0">
-          <h3 class="font-display text-base text-mystic-gold tracking-wide mb-0.5">Liam Voss</h3>
-          <p class="text-vial-purple text-xs font-mono tracking-wide mb-2 uppercase">Sound &amp; UI Designer</p>
-          <p class="text-parchment/45 text-sm truncate">liam.voss@university.edu</p>
-          <p class="text-parchment/30 text-xs font-mono mt-1">SoundCloud · Dribbble</p>
+          <h3 class="font-display text-lg text-slate leading-tight">Liam Voss</h3>
+          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-sound">Sound &amp; UI Designer</span>
+          <p class="text-slate-mid/70 text-sm truncate">liam.voss@university.edu</p>
+          <p class="text-slate-light/50 text-xs font-mono mt-0.5">SoundCloud · Dribbble</p>
         </div>
-        <div class="card-arrow text-mystic-gold/60 flex-shrink-0">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        <div class="card-arrow text-sky-pri flex-shrink-0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
         </div>
       </a>
     </div>
 
-    <!-- Hint -->
-    <p class="text-center text-parchment/25 text-xs font-mono mt-10 tracking-wider">Click a card to view full profile &amp; contributions</p>
+    <p class="text-center text-slate-light/40 text-xs font-bold mt-8 tracking-wider uppercase">
+      ✨ Click a card to see their contributions
+    </p>
 
   </main>
 
-  <footer class="relative z-10 border-t border-white/5 py-8 text-center">
-    <p class="text-parchment/30 text-xs tracking-wider font-mono">&copy; 2026 Tiny Alchemists &mdash; A Student Game Project</p>
+  <footer class="relative z-10 border-t border-slate/6 py-8 text-center bg-sky-card/50">
+    <!-- ✏️ 修改页脚 -->
+    <p class="text-slate-light/50 text-xs font-semibold tracking-wider">&copy; 2026 Tiny Alchemists &mdash; A Student Game Project &nbsp;🧪</p>
   </footer>
 </body>
 </html>
