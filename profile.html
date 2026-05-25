@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- ✏️ 修改页面标题：改成对应成员的名字 -->
-  <title>Alex Chen — Tiny Alchemists</title>
+  <title>Shuangyu Zhu — Tiny Alchemists</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -125,139 +125,124 @@
 
   <main class="relative z-10 max-w-4xl mx-auto px-6 py-12">
 
-    <!-- ═══════════════════════════════════════════
-         ✏️ 个人信息区域
-         修改：头像 emoji/图片、角色、姓名、联系方式
-    ═══════════════════════════════════════════ -->
+    <!-- ═══ PROFILE HEADER ═══ -->
+    <!-- ✏️ 修改个人信息：头像、角色、姓名、联系方式 -->
     <section class="profile-card p-8 sm:p-10 mb-10 anim">
       <div class="flex flex-col sm:flex-row items-center sm:items-start gap-7">
-        <!-- ✏️ 修改头像：替换 emoji 或换成 <img src="your-photo.jpg"> -->
+        <!-- ✏️ 修改头像 -->
         <div class="flex-shrink-0 w-28 h-28 rounded-2xl bg-sky-pale/50 border-3 border-sky-light flex items-center justify-center"
              style="box-shadow: 0 6px 24px rgba(74,159,217,.15);">
-          <span class="text-5xl">🧑‍💻</span>
+          <span class="text-5xl">💻</span>
         </div>
         <div class="text-center sm:text-left">
-          <!-- ✏️ 修改角色标签 -->
+          <!-- ✏️ 修改角色 -->
           <span class="inline-block px-3 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wider uppercase mb-2"
-                style="background: #E8F5E9; color: #388E3C;">Lead Programmer</span>
+                style="background: #E3F2FD; color: #1565C0;">Head of Programming</span>
           <!-- ✏️ 修改姓名 -->
-          <h1 class="font-display text-3xl sm:text-4xl text-slate mb-3">Alex Chen</h1>
+          <h1 class="font-display text-3xl sm:text-4xl text-slate mb-3">Shuangyu Zhu</h1>
           <div class="space-y-1.5 text-sm text-slate-mid">
             <!-- ✏️ 修改联系信息 -->
             <p class="flex items-center gap-2 justify-center sm:justify-start">
-              <span class="text-base">📧</span> alex.chen@university.edu
+              <span class="text-base">📧</span> shuangyu.zhu@university.edu
             </p>
             <p class="flex items-center gap-2 justify-center sm:justify-start">
-              <span class="text-base">💻</span> github.com/alexchen
+              <span class="text-base">💻</span> github.com/shuangyuzhu
             </p>
             <p class="flex items-center gap-2 justify-center sm:justify-start">
-              <span class="text-base">🔗</span> linkedin.com/in/alexchen
+              <span class="text-base">🔗</span> linkedin.com/in/shuangyuzhu
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════
-         ✏️ 贡献与技术工作区域
-         每个 <article> 是一个贡献卡片
-         可修改：图标、标题、描述段落、技术标签
-         可增删卡片（复制/删除一个 <article> 块即可）
-    ═══════════════════════════════════════════ -->
+    <!-- ═══ CONTRIBUTIONS ═══ -->
+    <!-- ✏️ 每个 <article> 是一个贡献卡片，可增删、修改内容 -->
     <section class="mb-10">
       <div class="text-center mb-10 anim d1">
         <div class="inline-block px-4 py-1 rounded-full bg-sky-pale/50 text-sky-deep text-xs font-bold tracking-wider uppercase mb-3 border border-sky-light/40">
           ⚗️ Technical Work
         </div>
-        <!-- ✏️ 修改此区域标题 -->
         <h2 class="font-display text-2xl sm:text-3xl text-slate">My Contributions &amp; Technical Work</h2>
       </div>
 
       <div class="space-y-5">
 
-        <!-- ✏️ === 贡献卡片 1 === -->
+        <!-- ✏️ === 贡献 1: Player Movement System === -->
         <article class="contrib-card anim d2">
           <div class="flex items-start gap-4">
-            <div class="icon-box bg-sky-pale/50 mt-0.5">🌐</div><!-- ✏️ 图标 -->
+            <div class="icon-box bg-sky-pale/50 mt-0.5">🏃</div>
             <div>
-              <!-- ✏️ 贡献标题 -->
-              <h3 class="font-display text-lg text-slate mb-2">Unity NGO Integration (Netcode for GameObjects)</h3>
-              <!-- ✏️ 贡献描述 -->
+              <h3 class="font-display text-lg text-slate mb-2">Player Movement &amp; First-Person Controller</h3>
               <p class="text-slate-mid text-sm leading-relaxed mb-3">
-                Architected the entire multiplayer infrastructure using Unity's Netcode for GameObjects (NGO) framework. Set up the
-                <code class="c">NetworkManager</code>, configured transport layers, and established the connection flow for host/client topology. Implemented reliable NetworkVariable synchronization for shared game state including cauldron contents, potion inventories, and player scores across all connected clients.
+                Programmed the complete first-person player movement system, including momentum-based horizontal movement at ~3 units speed, a single-height jump with vertical impulse reaching ~1 unit, and slightly floaty gravity tuned specifically for platforming control. Implemented air control so players can adjust trajectory mid-jump, and ensured the physics-based movement interacts correctly with potion effects like zero-gravity zones and bouncy surfaces. The movement is network-synchronized so all connected players see consistent, smooth motion.
               </p>
-              <!-- ✏️ 技术标签 -->
               <div class="flex flex-wrap gap-1.5">
-                <span class="tag">Unity NGO</span>
-                <span class="tag">NetworkManager</span>
-                <span class="tag">NetworkVariable</span>
+                <span class="tag">CharacterController</span>
+                <span class="tag">Physics</span>
+                <span class="tag">First-Person</span>
+                <span class="tag">Network Sync</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ✏️ === 贡献 2: General Gameplay Programming === -->
+        <article class="contrib-card anim d3">
+          <div class="flex items-start gap-4">
+            <div class="icon-box bg-mint-soft/40 mt-0.5">⚗️</div>
+            <div>
+              <h3 class="font-display text-lg text-slate mb-2">Core Alchemy &amp; Brewing System</h3>
+              <p class="text-slate-mid text-sm leading-relaxed mb-3">
+                Implemented the potion brewing pipeline according to the GDD recipe validation rules: checking for at most 1 base ingredient, at most 3 modifier ingredients, and no duplicates. When a valid recipe is brewed, three identical potions pop out of the cauldron; invalid recipes trigger a cauldron explosion with knockback and fire effects. Built the
+                <code class="c">BaseEffect</code> /
+                <code class="c">ModifierEffect</code> architecture supporting all 6 modifiers (Fire, Size, Float, Bouncy, Magnetic, Sparkle) combined with 3 base forms (Cloud, Object, Puddle), including special interactions like Fire + Sparkle creating repeated explosions and Bouncy + Magnetic causing repulsion.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag">Alchemy System</span>
+                <span class="tag">Recipe Validation</span>
+                <span class="tag">Effect Pipeline</span>
                 <span class="tag">C#</span>
               </div>
             </div>
           </div>
         </article>
 
-        <!-- ✏️ === 贡献卡片 2 === -->
-        <article class="contrib-card anim d3">
-          <div class="flex items-start gap-4">
-            <div class="icon-box bg-peach-soft/30 mt-0.5">🛡️</div>
-            <div>
-              <h3 class="font-display text-lg text-slate mb-2">Server-Authoritative Game Logic</h3>
-              <p class="text-slate-mid text-sm leading-relaxed mb-3">
-                Designed and implemented a fully server-authoritative architecture to ensure fair and deterministic gameplay for all players. All critical actions — ingredient submission, potion brewing validation, and cauldron explosion triggers — execute exclusively on the server via
-                <code class="c">ServerRpc</code> calls. Client-side prediction is used only for non-critical visual feedback, while
-                <code class="c">ClientRpc</code> broadcasts propagate authoritative state changes to every connected player in real time.
-              </p>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="tag">ServerRpc</span>
-                <span class="tag">ClientRpc</span>
-                <span class="tag">Fair Play</span>
-                <span class="tag">Authority Model</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- ✏️ === 贡献卡片 3 === -->
+        <!-- ✏️ === 贡献 3: Player Interaction === -->
         <article class="contrib-card anim d4">
           <div class="flex items-start gap-4">
-            <div class="icon-box bg-mint-soft/40 mt-0.5">🧪</div>
+            <div class="icon-box bg-peach-soft/30 mt-0.5">🎯</div>
             <div>
-              <h3 class="font-display text-lg text-slate mb-2">Status Effect Manager &amp; Potion System</h3>
+              <h3 class="font-display text-lg text-slate mb-2">Player Interaction &amp; Inventory System</h3>
               <p class="text-slate-mid text-sm leading-relaxed mb-3">
-                Built the complete potion effect pipeline using a modular
-                <code class="c">BaseEffect</code> /
-                <code class="c">ModifierEffect</code> architecture. Five potion types (Fire, Ice, Magnetic, Bouncy, Gravity) each implement unique physics-based behaviors via a shared interface. Effects are composed at brew-time from base ingredients and modifiers, serialized over the network using
-                <code class="c">NetworkList&lt;int&gt;</code>, and instantiated on all clients through a factory pattern that maps ingredient IDs to concrete effect classes.
+                Built the complete player interaction system using raycast-based detection within ~1 unit range. Players can Pick Up holdable objects (ingredients, potions, plant pots) into a 3-slot inventory, Drop items with a gentle forward toss, or Throw them with enough force (~10 units) to break potions on impact. Implemented the
+                <code class="c">IInteractable</code> interface for cauldrons and other world objects, and the
+                <code class="c">Holdable</code> component with visual staff-levitation feedback. Inventory slot switching is supported via number keys and mouse scroll.
               </p>
               <div class="flex flex-wrap gap-1.5">
-                <span class="tag">Status Effects</span>
-                <span class="tag">Factory Pattern</span>
-                <span class="tag">NetworkList</span>
-                <span class="tag">Physics</span>
+                <span class="tag">Raycasting</span>
+                <span class="tag">Inventory</span>
+                <span class="tag">IInteractable</span>
+                <span class="tag">Holdable</span>
               </div>
             </div>
           </div>
         </article>
 
-        <!-- ✏️ === 贡献卡片 4 === -->
+        <!-- ✏️ === 贡献 4: Playtesting === -->
         <article class="contrib-card anim d5">
           <div class="flex items-start gap-4">
-            <div class="icon-box bg-honey-light/40 mt-0.5">💥</div>
+            <div class="icon-box bg-honey-light/40 mt-0.5">🧪</div>
             <div>
-              <h3 class="font-display text-lg text-slate mb-2">Cauldron Explosion &amp; Player Interaction Systems</h3>
+              <h3 class="font-display text-lg text-slate mb-2">Playtesting &amp; Physics Debugging</h3>
               <p class="text-slate-mid text-sm leading-relaxed mb-3">
-                Implemented the signature cauldron explosion mechanic: a server-side timer tracks how long a player remains inside the cauldron trigger volume. When the threshold is reached, an explosion force launches the player via the existing
-                <code class="c">PlayerPush</code> RPC — a core party-game moment that always gets laughs. Also built the complete player interaction system
-                (<code class="c">PlayerInteract</code>) with raycast-based pickup, throw mechanics, and the
-                <code class="c">IInteractable</code> interface for extensible world interactions.
+                Conducted extensive playtesting sessions to verify physics consistency across all potion combinations, ensuring interactions like magnetic attraction, bouncy collisions, and zero-gravity zones produce predictable yet entertaining results. Identified and fixed collision issues including objects clipping through cauldrons, player-object penetration during pickup, and slope movement instabilities. Tuned the "slightly floaty" gravity feel to balance platforming precision with the chaotic fun the game targets.
               </p>
               <div class="flex flex-wrap gap-1.5">
-                <span class="tag">Trigger Volumes</span>
-                <span class="tag">Raycasting</span>
-                <span class="tag">RPC</span>
-                <span class="tag">Collision System</span>
+                <span class="tag">QA Testing</span>
+                <span class="tag">Physics Tuning</span>
+                <span class="tag">Collision Debugging</span>
+                <span class="tag">Balance</span>
               </div>
             </div>
           </div>
@@ -268,7 +253,6 @@
 
     <!-- ═══ BACK BUTTON ═══ -->
     <div class="text-center anim d5">
-      <!-- ✏️ 修改返回按钮文字 -->
       <a href="about.html"
          class="back-btn inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full border-2 border-sky-pri text-sky-pri font-bold text-sm tracking-wide">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -279,7 +263,6 @@
   </main>
 
   <footer class="relative z-10 border-t border-slate/6 py-8 text-center bg-sky-card/50 mt-8">
-    <!-- ✏️ 修改页脚 -->
     <p class="text-slate-light/50 text-xs font-semibold tracking-wider">&copy; 2026 Tiny Alchemists &mdash; A Student Game Project &nbsp;🧪</p>
   </footer>
 </body>

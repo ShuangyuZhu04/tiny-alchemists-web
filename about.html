@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- ✏️ 修改页面标题 -->
   <title>About Us — Tiny Alchemists</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +55,6 @@
     .nav-pill:hover { background: rgba(74,159,217,.1); color: #2E7CB8; }
     .nav-pill.active { background: #4A9FD9; color: #fff; }
 
-    /* ── Team Card ── */
     .team-card {
       display: flex; align-items: center; gap: 1.25rem;
       padding: 1.35rem 1.5rem;
@@ -78,11 +76,12 @@
     .card-arrow { opacity:0; transform: translateX(-8px); transition: opacity .3s, transform .3s; }
     .team-card:hover .card-arrow { opacity:1; transform: translateX(0); }
 
-    .badge-programmer  { background: #E8F5E9; color: #388E3C; }
-    .badge-artist      { background: #FFF3E0; color: #E65100; }
-    .badge-network     { background: #E3F2FD; color: #1565C0; }
-    .badge-designer    { background: #F3E5F5; color: #7B1FA2; }
-    .badge-sound       { background: #FBE9E7; color: #BF360C; }
+    /* Role badge palette */
+    .badge-art       { background: #FFF3E0; color: #E65100; }
+    .badge-sound     { background: #F3E5F5; color: #7B1FA2; }
+    .badge-prog      { background: #E3F2FD; color: #1565C0; }
+    .badge-ops       { background: #E8F5E9; color: #388E3C; }
+    .badge-design    { background: #FBE9E7; color: #BF360C; }
 
     @keyframes cardPop {
       from { opacity:0; transform: translateY(22px) scale(.97); }
@@ -94,6 +93,13 @@
     .card-animate:nth-child(3) { animation-delay: .28s; }
     .card-animate:nth-child(4) { animation-delay: .38s; }
     .card-animate-last { animation: cardPop .55s ease forwards; opacity:0; animation-delay: .48s; }
+
+    /* Responsibility tags */
+    .resp-tag {
+      display: inline-block; padding: .15rem .5rem; font-size: .6rem;
+      font-family: "JetBrains Mono", monospace; font-weight: 600;
+      border-radius: 9999px; background: #F0F7FD; color: #4A6178; border: 1px solid #D4EAFB;
+    }
   </style>
 </head>
 <body class="font-body antialiased">
@@ -116,84 +122,94 @@
 
   <main class="relative z-10 max-w-5xl mx-auto px-6 py-16">
 
-    <!-- ═══ PAGE HEADER ═══ -->
     <header class="text-center mb-14">
-      <!-- ✏️ 修改顶部小标签 -->
       <div class="inline-block px-4 py-1 rounded-full bg-sky-pale/50 text-sky-deep text-xs font-bold tracking-wider uppercase mb-4 border border-sky-light/40">
         🎉 The Team
       </div>
-      <!-- ✏️ 修改页面大标题 -->
       <h1 class="font-display text-4xl sm:text-5xl text-slate mb-3">Meet Our Guild</h1>
-      <!-- ✏️ 修改页面副标题描述 -->
-      <p class="max-w-md mx-auto text-slate-mid text-base leading-relaxed">
-        Five student developers on a quest to build the coziest, most chaotic multiplayer party game ever.
+      <p class="max-w-lg mx-auto text-slate-mid text-base leading-relaxed">
+        Five student developers building a cozy co-op adventure about homunculi,
+        magical greenhouses, and explosive potion experiments.
       </p>
     </header>
 
     <!-- ═══ TEAM GRID: 2×2 + 1 CENTERED ═══ -->
-    <!-- ✏️ 每张卡片内可修改：姓名、角色、邮箱、社交链接 -->
-    <!-- ✏️ 修改 href="profile.html?member=xxx" 来指向不同的个人页面 -->
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
 
-      <!-- ✏️ === 团队成员 1 === -->
-      <a href="profile.html?member=alex" class="team-card card-animate" aria-label="View Alex Chen's profile">
-        <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-sky-pale/40 flex items-center justify-center">
-          <span class="text-3xl">🧑‍💻</span><!-- ✏️ 修改头像 emoji 或替换为 <img> -->
-        </div>
-        <div class="flex-1 min-w-0">
-          <h3 class="font-display text-lg text-slate leading-tight">Alex Chen</h3><!-- ✏️ 姓名 -->
-          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-programmer">Lead Programmer</span><!-- ✏️ 角色 -->
-          <p class="text-slate-mid/70 text-sm truncate">alex.chen@university.edu</p><!-- ✏️ 邮箱 -->
-          <p class="text-slate-light/50 text-xs font-mono mt-0.5">GitHub · LinkedIn</p><!-- ✏️ 社交链接 -->
-        </div>
-        <div class="card-arrow text-sky-pri flex-shrink-0">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
-        </div>
-      </a>
-
-      <!-- ✏️ === 团队成员 2 === -->
-      <a href="profile.html?member=maya" class="team-card card-animate" aria-label="View Maya Lindström's profile">
+      <!-- ✏️ === 成员 1: Yufan Huang === -->
+      <a href="profile.html?member=yufan" class="team-card card-animate" aria-label="View Yufan Huang's profile">
         <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-peach-soft/25 flex items-center justify-center">
           <span class="text-3xl">🎨</span>
         </div>
         <div class="flex-1 min-w-0">
-          <h3 class="font-display text-lg text-slate leading-tight">Maya Lindström</h3>
-          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-artist">3D Artist &amp; VFX</span>
-          <p class="text-slate-mid/70 text-sm truncate">maya.lindstrom@university.edu</p>
-          <p class="text-slate-light/50 text-xs font-mono mt-0.5">ArtStation · Behance</p>
+          <h3 class="font-display text-lg text-slate leading-tight">Yufan Huang</h3>
+          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-art">Head of Art &amp; 3D Assets</span>
+          <div class="flex flex-wrap gap-1 mt-1">
+            <span class="resp-tag">UI Art</span>
+            <span class="resp-tag">3D Modeling</span>
+            <span class="resp-tag">VFX</span>
+            <span class="resp-tag">UI Programming</span>
+          </div>
         </div>
         <div class="card-arrow text-sky-pri flex-shrink-0">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
         </div>
       </a>
 
-      <!-- ✏️ === 团队成员 3 === -->
-      <a href="profile.html?member=omar" class="team-card card-animate" aria-label="View Omar Khalil's profile">
-        <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-sky-pale/30 flex items-center justify-center">
+      <!-- ✏️ === 成员 2: Lugina Suciati Putri === -->
+      <a href="profile.html?member=lugina" class="team-card card-animate" aria-label="View Lugina Suciati Putri's profile">
+        <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-lavender-soft/30 flex items-center justify-center">
+          <span class="text-3xl">🎵</span>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="font-display text-lg text-slate leading-tight">Lugina Suciati Putri</h3>
+          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-sound">Head of Music &amp; Sound</span>
+          <div class="flex flex-wrap gap-1 mt-1">
+            <span class="resp-tag">Level Design</span>
+            <span class="resp-tag">Sound &amp; Music</span>
+            <span class="resp-tag">UI Design</span>
+            <span class="resp-tag">Playtesting</span>
+          </div>
+        </div>
+        <div class="card-arrow text-sky-pri flex-shrink-0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </a>
+
+      <!-- ✏️ === 成员 3: Shuangyu Zhu === -->
+      <a href="profile.html?member=shuangyu" class="team-card card-animate" aria-label="View Shuangyu Zhu's profile">
+        <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-sky-pale/40 flex items-center justify-center">
+          <span class="text-3xl">💻</span>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="font-display text-lg text-slate leading-tight">Shuangyu Zhu</h3>
+          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-prog">Head of Programming</span>
+          <div class="flex flex-wrap gap-1 mt-1">
+            <span class="resp-tag">General Programming</span>
+            <span class="resp-tag">Player Movement</span>
+            <span class="resp-tag">Playtesting</span>
+          </div>
+        </div>
+        <div class="card-arrow text-sky-pri flex-shrink-0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </a>
+
+      <!-- ✏️ === 成员 4: Ruslan Abdulin === -->
+      <a href="profile.html?member=ruslan" class="team-card card-animate" aria-label="View Ruslan Abdulin's profile">
+        <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-mint-soft/30 flex items-center justify-center">
           <span class="text-3xl">🌐</span>
         </div>
         <div class="flex-1 min-w-0">
-          <h3 class="font-display text-lg text-slate leading-tight">Omar Khalil</h3>
-          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-network">Network Engineer</span>
-          <p class="text-slate-mid/70 text-sm truncate">omar.khalil@university.edu</p>
-          <p class="text-slate-light/50 text-xs font-mono mt-0.5">GitHub · Twitter</p>
-        </div>
-        <div class="card-arrow text-sky-pri flex-shrink-0">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
-        </div>
-      </a>
-
-      <!-- ✏️ === 团队成员 4 === -->
-      <a href="profile.html?member=sofia" class="team-card card-animate" aria-label="View Sofia Park's profile">
-        <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-mint-soft/30 flex items-center justify-center">
-          <span class="text-3xl">🎲</span>
-        </div>
-        <div class="flex-1 min-w-0">
-          <h3 class="font-display text-lg text-slate leading-tight">Sofia Park</h3>
-          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-designer">Game Designer</span>
-          <p class="text-slate-mid/70 text-sm truncate">sofia.park@university.edu</p>
-          <p class="text-slate-light/50 text-xs font-mono mt-0.5">Portfolio · LinkedIn</p>
+          <h3 class="font-display text-lg text-slate leading-tight">Ruslan Abdulin</h3>
+          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-ops">Operations Manager</span>
+          <div class="flex flex-wrap gap-1 mt-1">
+            <span class="resp-tag">Multiplayer</span>
+            <span class="resp-tag">Graphics</span>
+            <span class="resp-tag">3D Modeling</span>
+            <span class="resp-tag">GitHub</span>
+          </div>
         </div>
         <div class="card-arrow text-sky-pri flex-shrink-0">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
@@ -201,17 +217,20 @@
       </a>
     </div>
 
-    <!-- ✏️ === 团队成员 5（居中） === -->
+    <!-- 第5张卡片居中 -->
     <div class="flex justify-center">
-      <a href="profile.html?member=liam" class="team-card card-animate-last w-full md:w-[calc(50%-0.625rem)]" aria-label="View Liam Voss's profile">
-        <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-peach-soft/20 flex items-center justify-center">
-          <span class="text-3xl">🔊</span>
+      <!-- ✏️ === 成员 5: Barnabas Tanczos === -->
+      <a href="profile.html?member=barnabas" class="team-card card-animate-last w-full md:w-[calc(50%-0.625rem)]" aria-label="View Barnabas Tanczos's profile">
+        <div class="avatar-ring flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-2xl bg-honey-light/30 flex items-center justify-center">
+          <span class="text-3xl">🎲</span>
         </div>
         <div class="flex-1 min-w-0">
-          <h3 class="font-display text-lg text-slate leading-tight">Liam Voss</h3>
-          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-sound">Sound &amp; UI Designer</span>
-          <p class="text-slate-mid/70 text-sm truncate">liam.voss@university.edu</p>
-          <p class="text-slate-light/50 text-xs font-mono mt-0.5">SoundCloud · Dribbble</p>
+          <h3 class="font-display text-lg text-slate leading-tight">Barnabas Tanczos</h3>
+          <span class="inline-block mt-1 mb-2 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wide uppercase badge-design">Lead Game Design</span>
+          <div class="flex flex-wrap gap-1 mt-1">
+            <span class="resp-tag">Graphics Programming</span>
+            <span class="resp-tag">Other Programming</span>
+          </div>
         </div>
         <div class="card-arrow text-sky-pri flex-shrink-0">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
@@ -226,7 +245,6 @@
   </main>
 
   <footer class="relative z-10 border-t border-slate/6 py-8 text-center bg-sky-card/50">
-    <!-- ✏️ 修改页脚 -->
     <p class="text-slate-light/50 text-xs font-semibold tracking-wider">&copy; 2026 Tiny Alchemists &mdash; A Student Game Project &nbsp;🧪</p>
   </footer>
 </body>
