@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Chen — Tiny Alchemists</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            parchment: '#f5e6c8',
+            ink: '#1a0e2e',
+            'deep-purple': '#2d1b4e',
+            'mystic-gold': '#d4a843',
+            'ember-orange': '#e8853b',
+            'potion-green': '#4ade80',
+            'cauldron-dark': '#0d0a1a',
+            'vial-purple': '#7c3aed',
+          },
+          fontFamily: {
+            display: ['"Cinzel Decorative"', 'serif'],
+            body: ['"Crimson Pro"', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { background-color: #0d0a1a; color: #f5e6c8; overflow-x: hidden; }
+
+    .bg-particles {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(1.5px 1.5px at 20% 30%, rgba(212,168,67,.45) 50%, transparent 100%),
+        radial-gradient(1px 1px at 60% 70%, rgba(124,58,237,.35) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 80% 20%, rgba(212,168,67,.3) 50%, transparent 100%),
+        radial-gradient(1px 1px at 40% 80%, rgba(124,58,237,.25) 50%, transparent 100%);
+      animation: drift 25s linear infinite;
+    }
+    @keyframes drift { 0% { transform: translateY(0); } 100% { transform: translateY(-60px); } }
+
+    .nav-link { position: relative; padding-bottom: 2px; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px;
+      background: #d4a843; transition: width .3s ease, left .3s ease;
+    }
+    .nav-link:hover::after { width: 100%; left: 0; }
+
+    .ornament { display: flex; align-items: center; gap: 1rem; justify-content: center; }
+    .ornament::before, .ornament::after {
+      content: ''; width: 60px; height: 1px;
+      background: linear-gradient(90deg, transparent, #d4a843, transparent);
+    }
+
+    .glass-panel {
+      background: linear-gradient(155deg, rgba(45,27,78,.4) 0%, rgba(13,10,26,.65) 100%);
+      border: 1px solid rgba(212,168,67,.12);
+      border-radius: 1rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .contrib-card {
+      background: linear-gradient(160deg, rgba(45,27,78,.35) 0%, rgba(13,10,26,.55) 100%);
+      border: 1px solid rgba(124,58,237,.15);
+      border-radius: .75rem;
+      padding: 1.5rem;
+      transition: border-color .3s ease, transform .3s ease;
+    }
+    .contrib-card:hover {
+      border-color: rgba(212,168,67,.3);
+      transform: translateY(-2px);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: .2rem .65rem;
+      font-size: .65rem;
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: .06em;
+      border-radius: 9999px;
+      background: rgba(124,58,237,.15);
+      color: rgba(124,58,237,.85);
+      border: 1px solid rgba(124,58,237,.2);
+    }
+
+    .back-btn {
+      position: relative; overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .3s ease;
+    }
+    .back-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(212,168,67,.5);
+      box-shadow: 0 6px 25px rgba(212,168,67,.2);
+    }
+
+    /* Entrance */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in { animation: fadeUp .7s ease forwards; opacity: 0; }
+    .delay-1 { animation-delay: .15s; }
+    .delay-2 { animation-delay: .3s; }
+    .delay-3 { animation-delay: .45s; }
+    .delay-4 { animation-delay: .6s; }
+  </style>
+</head>
+<body class="font-body antialiased">
+
+  <div class="bg-particles"></div>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="relative z-30 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="index.html" class="font-display text-lg tracking-wider text-mystic-gold flex items-center gap-2">
+        <svg width="28" height="28" viewBox="0 0 100 100" fill="none"><path d="M50 8 L62 38 L95 38 L68 58 L78 90 L50 70 L22 90 L32 58 L5 38 L38 38 Z" fill="#d4a843" opacity=".85"/></svg>
+        Tiny Alchemists
+      </a>
+      <div class="flex items-center gap-8 text-sm tracking-wide uppercase">
+        <a href="index.html" class="nav-link text-parchment/60 hover:text-parchment transition-colors">Home</a>
+        <a href="about.html" class="nav-link text-parchment/60 hover:text-parchment transition-colors">About Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="relative z-10 max-w-4xl mx-auto px-6 py-16">
+
+    <!-- ═══ PROFILE HEADER ═══ -->
+    <section class="glass-panel p-8 sm:p-10 mb-10 animate-in">
+      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8">
+
+        <!-- Avatar -->
+        <div class="flex-shrink-0 w-32 h-32 rounded-full border-2 border-mystic-gold/35 bg-deep-purple/50 flex items-center justify-center"
+             style="box-shadow: 0 0 30px rgba(212,168,67,.15), 0 0 60px rgba(124,58,237,.1);">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-mystic-gold/50">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+
+        <!-- Info -->
+        <div class="text-center sm:text-left">
+          <p class="text-xs tracking-[.3em] uppercase text-vial-purple/70 font-mono mb-2">Lead Programmer</p>
+          <h1 class="font-display text-3xl sm:text-4xl text-mystic-gold tracking-wide mb-3"
+              style="text-shadow: 0 0 30px rgba(212,168,67,.2);">Alex Chen</h1>
+
+          <div class="space-y-1.5 text-sm text-parchment/55">
+            <p class="flex items-center gap-2 justify-center sm:justify-start">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-mystic-gold/40"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              alex.chen@university.edu
+            </p>
+            <p class="flex items-center gap-2 justify-center sm:justify-start">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-mystic-gold/40"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              github.com/alexchen
+            </p>
+            <p class="flex items-center gap-2 justify-center sm:justify-start">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-mystic-gold/40"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+              linkedin.com/in/alexchen
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CONTRIBUTIONS ═══ -->
+    <section class="mb-12">
+      <div class="text-center mb-10 animate-in delay-1">
+        <h2 class="font-display text-2xl text-mystic-gold tracking-wide mb-2">My Contributions &amp; Technical Work</h2>
+        <div class="ornament text-mystic-gold/40 text-xs">⚗</div>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- Contribution 1 -->
+        <article class="contrib-card animate-in delay-1">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-vial-purple/15 border border-vial-purple/20 flex items-center justify-center mt-0.5">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-vial-purple/70"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display text-base text-mystic-gold tracking-wide mb-2">Unity NGO Integration (Netcode for GameObjects)</h3>
+              <p class="text-parchment/55 text-sm leading-relaxed mb-3">
+                Architected the entire multiplayer infrastructure using Unity's Netcode for GameObjects (NGO) framework. Set up the <code class="font-mono text-xs text-vial-purple/80 bg-vial-purple/10 px-1.5 py-0.5 rounded">NetworkManager</code>, configured transport layers, and established the connection flow for host/client topology. Implemented reliable NetworkVariable synchronization for shared game state including cauldron contents, potion inventories, and player scores.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tag">Unity NGO</span>
+                <span class="tag">NetworkManager</span>
+                <span class="tag">NetworkVariable</span>
+                <span class="tag">C#</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Contribution 2 -->
+        <article class="contrib-card animate-in delay-2">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-vial-purple/15 border border-vial-purple/20 flex items-center justify-center mt-0.5">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-vial-purple/70"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display text-base text-mystic-gold tracking-wide mb-2">Server-Authoritative Game Logic</h3>
+              <p class="text-parchment/55 text-sm leading-relaxed mb-3">
+                Designed and implemented a fully server-authoritative architecture to prevent cheating and ensure deterministic gameplay. All critical actions — ingredient submission, potion brewing validation, and cauldron explosion triggers — execute exclusively on the server via <code class="font-mono text-xs text-vial-purple/80 bg-vial-purple/10 px-1.5 py-0.5 rounded">ServerRpc</code> calls. Client-side prediction is used only for non-critical visual feedback, while <code class="font-mono text-xs text-vial-purple/80 bg-vial-purple/10 px-1.5 py-0.5 rounded">ClientRpc</code> broadcasts propagate authoritative state changes to all connected players.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tag">ServerRpc</span>
+                <span class="tag">ClientRpc</span>
+                <span class="tag">Anti-Cheat</span>
+                <span class="tag">Authority Model</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Contribution 3 -->
+        <article class="contrib-card animate-in delay-3">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-vial-purple/15 border border-vial-purple/20 flex items-center justify-center mt-0.5">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-vial-purple/70"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display text-base text-mystic-gold tracking-wide mb-2">Status Effect Manager &amp; Potion System</h3>
+              <p class="text-parchment/55 text-sm leading-relaxed mb-3">
+                Built the complete potion effect pipeline using a modular <code class="font-mono text-xs text-vial-purple/80 bg-vial-purple/10 px-1.5 py-0.5 rounded">BaseEffect</code> / <code class="font-mono text-xs text-vial-purple/80 bg-vial-purple/10 px-1.5 py-0.5 rounded">ModifierEffect</code> architecture. Five potion types (Fire, Ice, Magnetic, Bouncy, Gravity) each implement unique physics-based behaviors via a shared interface. Effects are composed at brew-time from base ingredients and modifiers, serialized over the network using <code class="font-mono text-xs text-vial-purple/80 bg-vial-purple/10 px-1.5 py-0.5 rounded">NetworkList&lt;int&gt;</code>, and instantiated on all clients through a factory pattern that maps ingredient IDs to concrete effect classes.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tag">Status Effects</span>
+                <span class="tag">Factory Pattern</span>
+                <span class="tag">NetworkList</span>
+                <span class="tag">Physics</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Contribution 4 -->
+        <article class="contrib-card animate-in delay-4">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-vial-purple/15 border border-vial-purple/20 flex items-center justify-center mt-0.5">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-vial-purple/70"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display text-base text-mystic-gold tracking-wide mb-2">Cauldron Explosion &amp; Player Interaction Systems</h3>
+              <p class="text-parchment/55 text-sm leading-relaxed mb-3">
+                Implemented the cauldron explosion mechanic: a server-side timer tracks how long a player remains inside the cauldron trigger volume. When the threshold is reached, an explosion force is applied to the player via the existing <code class="font-mono text-xs text-vial-purple/80 bg-vial-purple/10 px-1.5 py-0.5 rounded">PlayerPush</code> RPC. Also built the complete player interaction system (<code class="font-mono text-xs text-vial-purple/80 bg-vial-purple/10 px-1.5 py-0.5 rounded">PlayerInteract</code>) with raycast-based pickup, throw mechanics, and <code class="font-mono text-xs text-vial-purple/80 bg-vial-purple/10 px-1.5 py-0.5 rounded">IInteractable</code> interface for extensible world interactions.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tag">Trigger Volumes</span>
+                <span class="tag">Raycasting</span>
+                <span class="tag">RPC</span>
+                <span class="tag">Collision System</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ BACK BUTTON ═══ -->
+    <div class="text-center animate-in delay-4">
+      <a href="about.html"
+         class="back-btn inline-flex items-center gap-3 px-8 py-3.5 rounded-lg border border-mystic-gold/25 text-mystic-gold font-display text-xs tracking-widest uppercase">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to About Us
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="relative z-10 border-t border-white/5 py-8 text-center mt-8">
+    <p class="text-parchment/30 text-xs tracking-wider font-mono">&copy; 2026 Tiny Alchemists &mdash; A Student Game Project</p>
+  </footer>
+</body>
+</html>

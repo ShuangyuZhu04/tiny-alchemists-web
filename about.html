@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Tiny Alchemists</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            parchment: '#f5e6c8',
+            ink: '#1a0e2e',
+            'deep-purple': '#2d1b4e',
+            'mystic-gold': '#d4a843',
+            'ember-orange': '#e8853b',
+            'potion-green': '#4ade80',
+            'cauldron-dark': '#0d0a1a',
+            'vial-purple': '#7c3aed',
+          },
+          fontFamily: {
+            display: ['"Cinzel Decorative"', 'serif'],
+            body: ['"Crimson Pro"', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { background-color: #0d0a1a; color: #f5e6c8; overflow-x: hidden; }
+
+    .bg-particles {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(1.5px 1.5px at 20% 30%, rgba(212,168,67,.45) 50%, transparent 100%),
+        radial-gradient(1px 1px at 60% 70%, rgba(124,58,237,.35) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 80% 20%, rgba(212,168,67,.3) 50%, transparent 100%),
+        radial-gradient(1px 1px at 40% 80%, rgba(124,58,237,.25) 50%, transparent 100%);
+      animation: drift 25s linear infinite;
+    }
+    @keyframes drift { 0% { transform: translateY(0); } 100% { transform: translateY(-60px); } }
+
+    .nav-link { position: relative; padding-bottom: 2px; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px;
+      background: #d4a843; transition: width .3s ease, left .3s ease;
+    }
+    .nav-link:hover::after { width: 100%; left: 0; }
+
+    .ornament { display: flex; align-items: center; gap: 1rem; justify-content: center; }
+    .ornament::before, .ornament::after {
+      content: ''; width: 80px; height: 1px;
+      background: linear-gradient(90deg, transparent, #d4a843, transparent);
+    }
+
+    /* ── Team card ── */
+    .team-card {
+      display: flex; align-items: center; gap: 1.25rem;
+      padding: 1.5rem;
+      background: linear-gradient(155deg, rgba(45,27,78,.45) 0%, rgba(13,10,26,.7) 100%);
+      border: 1px solid rgba(212,168,67,.12);
+      border-radius: 1rem;
+      text-decoration: none; color: inherit;
+      cursor: pointer;
+      transition:
+        transform .3s cubic-bezier(.25,.46,.45,.94),
+        box-shadow .35s ease,
+        border-color .3s ease;
+    }
+    .team-card:hover {
+      transform: scale(1.04) translateY(-4px);
+      border-color: rgba(212,168,67,.55);
+      box-shadow:
+        0 0 30px rgba(212,168,67,.18),
+        0 0 60px rgba(124,58,237,.12),
+        0 12px 40px rgba(0,0,0,.35);
+    }
+    .team-card:active { transform: scale(1.01) translateY(-1px); }
+
+    /* Avatar ring glow on hover */
+    .avatar-ring {
+      transition: box-shadow .35s ease;
+    }
+    .team-card:hover .avatar-ring {
+      box-shadow: 0 0 20px rgba(212,168,67,.35), 0 0 40px rgba(124,58,237,.15);
+    }
+
+    /* Arrow indicator slides on hover */
+    .card-arrow {
+      opacity: 0; transform: translateX(-8px);
+      transition: opacity .3s ease, transform .3s ease;
+    }
+    .team-card:hover .card-arrow {
+      opacity: 1; transform: translateX(0);
+    }
+
+    /* Stagger entrance */
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card-animate { animation: cardIn .6s ease forwards; opacity: 0; }
+    .card-animate:nth-child(1) { animation-delay: .1s; }
+    .card-animate:nth-child(2) { animation-delay: .2s; }
+    .card-animate:nth-child(3) { animation-delay: .3s; }
+    .card-animate:nth-child(4) { animation-delay: .4s; }
+    .card-animate-last { animation: cardIn .6s ease forwards; opacity: 0; animation-delay: .5s; }
+  </style>
+</head>
+<body class="font-body antialiased">
+
+  <div class="bg-particles"></div>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="relative z-30 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="index.html" class="font-display text-lg tracking-wider text-mystic-gold flex items-center gap-2">
+        <svg width="28" height="28" viewBox="0 0 100 100" fill="none"><path d="M50 8 L62 38 L95 38 L68 58 L78 90 L50 70 L22 90 L32 58 L5 38 L38 38 Z" fill="#d4a843" opacity=".85"/></svg>
+        Tiny Alchemists
+      </a>
+      <div class="flex items-center gap-8 text-sm tracking-wide uppercase">
+        <a href="index.html" class="nav-link text-parchment/60 hover:text-parchment transition-colors">Home</a>
+        <a href="about.html" class="nav-link text-mystic-gold/90 hover:text-mystic-gold transition-colors">About Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="relative z-10 max-w-5xl mx-auto px-6 py-20">
+
+    <!-- Header -->
+    <header class="text-center mb-16">
+      <p class="text-xs tracking-[.35em] uppercase text-vial-purple/80 mb-4 font-mono">The Guild</p>
+      <h1 class="font-display text-4xl sm:text-5xl text-mystic-gold mb-4 tracking-wide" style="text-shadow: 0 0 40px rgba(212,168,67,.25);">About Us</h1>
+      <div class="ornament text-mystic-gold/50 text-xs mb-6">✦</div>
+      <p class="max-w-lg mx-auto text-parchment/60 text-lg leading-relaxed italic">
+        Five student developers forging magic through code, art, and a healthy dose of caffeine.
+      </p>
+    </header>
+
+    <!-- ═══ TEAM GRID: 2×2 + 1 centered ═══ -->
+
+    <!-- Row 1 & 2: 2×2 grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
+      <!-- Card 1 -->
+      <a href="profile.html?member=alex" class="team-card card-animate" aria-label="View Alex Chen's profile">
+        <div class="avatar-ring flex-shrink-0 w-20 h-20 rounded-full border-2 border-mystic-gold/30 bg-deep-purple/60 flex items-center justify-center overflow-hidden">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="text-mystic-gold/60">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="font-display text-base text-mystic-gold tracking-wide mb-0.5">Alex Chen</h3>
+          <p class="text-vial-purple text-xs font-mono tracking-wide mb-2 uppercase">Lead Programmer</p>
+          <p class="text-parchment/45 text-sm truncate">alex.chen@university.edu</p>
+          <p class="text-parchment/30 text-xs font-mono mt-1">GitHub · LinkedIn</p>
+        </div>
+        <div class="card-arrow text-mystic-gold/60 flex-shrink-0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="profile.html?member=maya" class="team-card card-animate" aria-label="View Maya Lindström's profile">
+        <div class="avatar-ring flex-shrink-0 w-20 h-20 rounded-full border-2 border-mystic-gold/30 bg-deep-purple/60 flex items-center justify-center overflow-hidden">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="text-mystic-gold/60">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="font-display text-base text-mystic-gold tracking-wide mb-0.5">Maya Lindström</h3>
+          <p class="text-vial-purple text-xs font-mono tracking-wide mb-2 uppercase">3D Artist &amp; VFX</p>
+          <p class="text-parchment/45 text-sm truncate">maya.lindstrom@university.edu</p>
+          <p class="text-parchment/30 text-xs font-mono mt-1">ArtStation · Behance</p>
+        </div>
+        <div class="card-arrow text-mystic-gold/60 flex-shrink-0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="profile.html?member=omar" class="team-card card-animate" aria-label="View Omar Khalil's profile">
+        <div class="avatar-ring flex-shrink-0 w-20 h-20 rounded-full border-2 border-mystic-gold/30 bg-deep-purple/60 flex items-center justify-center overflow-hidden">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="text-mystic-gold/60">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="font-display text-base text-mystic-gold tracking-wide mb-0.5">Omar Khalil</h3>
+          <p class="text-vial-purple text-xs font-mono tracking-wide mb-2 uppercase">Network Engineer</p>
+          <p class="text-parchment/45 text-sm truncate">omar.khalil@university.edu</p>
+          <p class="text-parchment/30 text-xs font-mono mt-1">GitHub · Twitter</p>
+        </div>
+        <div class="card-arrow text-mystic-gold/60 flex-shrink-0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="profile.html?member=sofia" class="team-card card-animate" aria-label="View Sofia Park's profile">
+        <div class="avatar-ring flex-shrink-0 w-20 h-20 rounded-full border-2 border-mystic-gold/30 bg-deep-purple/60 flex items-center justify-center overflow-hidden">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="text-mystic-gold/60">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="font-display text-base text-mystic-gold tracking-wide mb-0.5">Sofia Park</h3>
+          <p class="text-vial-purple text-xs font-mono tracking-wide mb-2 uppercase">Game Designer</p>
+          <p class="text-parchment/45 text-sm truncate">sofia.park@university.edu</p>
+          <p class="text-parchment/30 text-xs font-mono mt-1">Portfolio · LinkedIn</p>
+        </div>
+        <div class="card-arrow text-mystic-gold/60 flex-shrink-0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </a>
+    </div>
+
+    <!-- Row 3: 5th card centered -->
+    <div class="flex justify-center">
+      <a href="profile.html?member=liam" class="team-card card-animate-last w-full md:w-[calc(50%-0.75rem)]" aria-label="View Liam Voss's profile">
+        <div class="avatar-ring flex-shrink-0 w-20 h-20 rounded-full border-2 border-mystic-gold/30 bg-deep-purple/60 flex items-center justify-center overflow-hidden">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="text-mystic-gold/60">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="font-display text-base text-mystic-gold tracking-wide mb-0.5">Liam Voss</h3>
+          <p class="text-vial-purple text-xs font-mono tracking-wide mb-2 uppercase">Sound &amp; UI Designer</p>
+          <p class="text-parchment/45 text-sm truncate">liam.voss@university.edu</p>
+          <p class="text-parchment/30 text-xs font-mono mt-1">SoundCloud · Dribbble</p>
+        </div>
+        <div class="card-arrow text-mystic-gold/60 flex-shrink-0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </a>
+    </div>
+
+    <!-- Hint -->
+    <p class="text-center text-parchment/25 text-xs font-mono mt-10 tracking-wider">Click a card to view full profile &amp; contributions</p>
+
+  </main>
+
+  <footer class="relative z-10 border-t border-white/5 py-8 text-center">
+    <p class="text-parchment/30 text-xs tracking-wider font-mono">&copy; 2026 Tiny Alchemists &mdash; A Student Game Project</p>
+  </footer>
+</body>
+</html>
