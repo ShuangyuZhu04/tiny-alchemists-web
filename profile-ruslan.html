@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!--
+      1. Copy this file and rename it to profile-YourName.html, such as: profile-yufan.html, profile-ruslan.html
+      2. Search for all [...] markers and replace them with your actual information
+      3. Contribution cards can be added or removed: copy or delete an <article> block as needed
+      4. Ensure your card's href in about.html points to the correct filename
+       -->
+
+        <title>[Your name] — Tiny Alchemists</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            "sky-pri": "#4A9FD9",
+                            "sky-deep": "#2E7CB8",
+                            "sky-light": "#7DBDE8",
+                            "sky-pale": "#D4EAFB",
+                            "sky-bg": "#F0F7FD",
+                            "sky-card": "#F7FBFF",
+                            peach: "#F5A67B",
+                            "peach-soft": "#FBCDB5",
+                            coral: "#F07654",
+                            honey: "#F5C042",
+                            "honey-light": "#FCEABB",
+                            mint: "#7DD3B4",
+                            "mint-soft": "#C2EDDB",
+                            slate: "#2A3B4D",
+                            "slate-mid": "#4A6178",
+                            "slate-light": "#7A93A9",
+                        },
+                        fontFamily: {
+                            display: ['"Lilita One"', "cursive"],
+                            body: ['"Nunito"', "sans-serif"],
+                            mono: ['"JetBrains Mono"', "monospace"],
+                        },
+                    },
+                },
+            };
+        </script>
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+            body {
+                background: #f0f7fd;
+                color: #2a3b4d;
+                overflow-x: hidden;
+            }
+            .bg-blobs {
+                position: fixed;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                overflow: hidden;
+            }
+            .blob {
+                position: absolute;
+                border-radius: 50%;
+                filter: blur(80px);
+                opacity: 0.25;
+            }
+            .blob-1 {
+                width: 420px;
+                height: 420px;
+                background: #d4eafb;
+                top: -5%;
+                left: 10%;
+                animation: fA 20s ease-in-out infinite;
+            }
+            .blob-2 {
+                width: 350px;
+                height: 350px;
+                background: #c2eddb;
+                bottom: 10%;
+                right: -3%;
+                animation: fB 22s ease-in-out infinite;
+            }
+            @keyframes fA {
+                0%,
+                100% {
+                    transform: translate(0, 0);
+                }
+                50% {
+                    transform: translate(20px, -18px);
+                }
+            }
+            @keyframes fB {
+                0%,
+                100% {
+                    transform: translate(0, 0);
+                }
+                50% {
+                    transform: translate(-18px, 15px);
+                }
+            }
+            .nav-pill {
+                padding: 0.45rem 1rem;
+                border-radius: 9999px;
+                transition:
+                    background 0.2s,
+                    color 0.2s;
+            }
+            .nav-pill:hover {
+                background: rgba(74, 159, 217, 0.1);
+                color: #2e7cb8;
+            }
+            .profile-card {
+                background: #fff;
+                border: 2px solid #d4eafb;
+                border-radius: 1.5rem;
+                box-shadow: 0 4px 20px rgba(42, 59, 77, 0.05);
+            }
+            .contrib-card {
+                background: #fff;
+                border: 2px solid transparent;
+                border-radius: 1rem;
+                padding: 1.5rem;
+                box-shadow: 0 2px 8px rgba(42, 59, 77, 0.04);
+                transition:
+                    border-color 0.3s,
+                    transform 0.3s,
+                    box-shadow 0.3s;
+            }
+            .contrib-card:hover {
+                border-color: #d4eafb;
+                transform: translateY(-3px);
+                box-shadow: 0 8px 25px rgba(74, 159, 217, 0.1);
+            }
+            .icon-box {
+                width: 2.75rem;
+                height: 2.75rem;
+                border-radius: 0.75rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                font-size: 1.35rem;
+            }
+            .tag {
+                display: inline-block;
+                padding: 0.2rem 0.6rem;
+                font-size: 0.6rem;
+                font-family: "JetBrains Mono", monospace;
+                font-weight: 600;
+                letter-spacing: 0.04em;
+                border-radius: 9999px;
+                background: #f0f7fd;
+                color: #2e7cb8;
+                border: 1px solid #d4eafb;
+            }
+            code.c {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.72rem;
+                background: #f0f7fd;
+                color: #2e7cb8;
+                padding: 0.15rem 0.45rem;
+                border-radius: 0.3rem;
+                border: 1px solid #d4eafb;
+            }
+            .back-btn {
+                transition:
+                    transform 0.25s,
+                    box-shadow 0.25s,
+                    background 0.25s,
+                    color 0.25s;
+            }
+            .back-btn:hover {
+                transform: translateY(-2px);
+                background: #4a9fd9;
+                color: #fff;
+                box-shadow: 0 6px 20px rgba(74, 159, 217, 0.25);
+            }
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(18px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .anim {
+                animation: fadeUp 0.6s ease forwards;
+                opacity: 0;
+            }
+            .d1 {
+                animation-delay: 0.1s;
+            }
+            .d2 {
+                animation-delay: 0.2s;
+            }
+            .d3 {
+                animation-delay: 0.3s;
+            }
+            .d4 {
+                animation-delay: 0.4s;
+            }
+            .d5 {
+                animation-delay: 0.5s;
+            }
+        </style>
+    </head>
+    <body class="font-body antialiased">
+        <div class="bg-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+
+        <!-- ═══ NAVIGATION ═══ -->
+        <nav class="relative z-30">
+            <div
+                class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
+            >
+                <a href="index.html" class="flex items-center gap-2.5">
+                    <span class="text-3xl leading-none">🧪</span>
+                    <span
+                        class="font-display text-xl text-sky-pri tracking-wide"
+                        >Tiny Alchemists</span
+                    >
+                </a>
+                <div class="flex items-center gap-2 text-sm font-semibold">
+                    <a href="index.html" class="nav-pill text-slate-mid"
+                        >Home</a
+                    >
+                    <a href="about.html" class="nav-pill text-slate-mid"
+                        >About Us</a
+                    >
+                </div>
+            </div>
+        </nav>
+
+        <main class="relative z-10 max-w-4xl mx-auto px-6 py-12">
+            <!-- SECTION 1: Personal Information Card -->
+            <section class="profile-card p-8 sm:p-10 mb-10 anim">
+                <div
+                    class="flex flex-col sm:flex-row items-center sm:items-start gap-7"
+                >
+                    <!-- Profile picture: Replace with emoji or change to <img src="YourImage.jpg" class="w-full h-full object-cover" alt="头像"> -->
+                    <div
+                        class="flex-shrink-0 w-28 h-28 rounded-2xl bg-sky-pale/50 border-3 border-sky-light flex items-center justify-center overflow-hidden"
+                        style="box-shadow: 0 6px 24px rgba(74, 159, 217, 0.15)"
+                    >
+                        <span class="text-5xl">🌬️</span>
+                    </div>
+
+                    <div class="text-center sm:text-left">
+                        <!--
+            Character tag colors are optional (to match about.html)：
+            Art:     background: #FFF3E0; color: #E65100;
+            Sound:   background: #F3E5F5; color: #7B1FA2;
+            Prog:    background: #E3F2FD; color: #1565C0;
+            Ops:     background: #E8F5E9; color: #388E3C;
+            Design:  background: #FBE9E7; color: #BF360C;
+          -->
+                        <span
+                            class="inline-block px-3 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wider uppercase mb-2"
+                            style="
+                                background: [Choose background color];
+                                color: [Choose text color];
+                            "
+                        >
+                            Project Manager & Director
+                        </span>
+
+                        <h1
+                            class="font-display text-3xl sm:text-4xl text-slate mb-3"
+                        >
+                            Ruslan Abdulin
+                        </h1>
+
+                        <div class="space-y-1.5 text-sm text-slate-mid">
+                            <p
+                                class="flex items-center gap-2 justify-center sm:justify-start"
+                            >
+                                <span class="text-base">📧</span>
+                                contact.ruslan.abdulin@gmail.com
+                            </p>
+                            <p
+                                class="flex items-center gap-2 justify-center sm:justify-start"
+                            >
+                                <span class="text-base">💼</span>
+                                <a
+                                    href="https://www.linkedin.com/in/ruslan-abdulin-dt/?locale=en"
+                                >
+                                    LinkedIn Profile</a
+                                >
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: Contributions and Technical Work
+         Contribution cards can be freely added and deleted
+         Add a new <article> block by copying it
+        Remove a <article> block by deleting it -->
+            <section class="mb-10">
+                <div class="text-center mb-10 anim d1">
+                    <div
+                        class="inline-block px-4 py-1 rounded-full bg-sky-pale/50 text-sky-deep text-xs font-bold tracking-wider uppercase mb-3 border border-sky-light/40"
+                    >
+                        ⚗️ Technical Work
+                    </div>
+                    <h2 class="font-display text-2xl sm:text-3xl text-slate">
+                        My Contributions &amp; Technical Work
+                    </h2>
+                </div>
+
+                <div class="space-y-5">
+                    <!-- ────────────────────────────────────
+             Contribution Card 1 (Copy this block to add more cards)
+             ──────────────────────────────────── -->
+                    <article class="contrib-card anim d2">
+                        <div class="flex items-start gap-4">
+                            <!-- Icon: Replace with any emoji -->
+                            <div class="icon-box bg-sky-pale/50 mt-0.5">💠</div>
+                            <div>
+                                <!-- Contribution Title -->
+                                <h3
+                                    class="font-display text-lg text-slate mb-2"
+                                >
+                                    Project Manager
+                                </h3>
+                                <!-- Contribution Description: Write 2-4 sentences explaining what you did, what technologies you used, and what problems you solved -->
+                                <p
+                                    class="text-slate-mid text-sm leading-relaxed mb-3"
+                                >
+                                    I organized this whole project! I setup our
+                                    github repo, managed pull requests, horrific
+                                    merge conflicts, a github projects kanban
+                                    board. I booked our meetings, Synced Coders
+                                    with Designers, and reconciled
+                                    domain-specific details across different
+                                    domains (e.g., communicating code details to
+                                    designers without needing to get into the
+                                    nitty-gritty of it).
+                                </p>
+                                <!-- Technical tags: Each span is a tag, which can be added or deleted. -->
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span
+                                        class="tag"
+                                        Project
+                                        Organisation
+                                    ></span>
+                                    <span class="tag"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ────────────────────────────────────
+             Contribution Card 2
+             ──────────────────────────────────── -->
+                    <article class="contrib-card anim d3">
+                        <div class="flex items-start gap-4">
+                            <div class="icon-box bg-mint-soft/40 mt-0.5">
+                                💠
+                            </div>
+                            <div>
+                                <h3
+                                    class="font-display text-lg text-slate mb-2"
+                                >
+                                    Multiplayer Coder
+                                </h3>
+                                <p
+                                    class="text-slate-mid text-sm leading-relaxed mb-3"
+                                >
+                                    I was responsible for setting up remote
+                                    multiplayer & defining the initial
+                                    client-server architecture. This means that
+                                    I established connection to Unity Services,
+                                    and ensured that game state was correctly
+                                    propogated across the network. It was tough,
+                                    but I feel like I know so much more about
+                                    how multiplayer games are made !!
+                                </p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="tag">Coding</span>
+                                    <span class="tag">Networking</span>
+                                    <span class="tag"
+                                        >Quality Assurance testing</span
+                                    >
+                                    <span class="tag">Systems archicture</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ────────────────────────────────────
+                           Contribution Card 2
+                           ──────────────────────────────────── -->
+                    <article class="contrib-card anim d3">
+                        <div class="flex items-start gap-4">
+                            <div class="icon-box bg-mint-soft/40 mt-0.5">
+                                💠
+                            </div>
+                            <div>
+                                <h3
+                                    class="font-display text-lg text-slate mb-2"
+                                >
+                                    Game Director
+                                </h3>
+                                <p
+                                    class="text-slate-mid text-sm leading-relaxed mb-3"
+                                >
+                                    I did a lot of the executive decision making
+                                    of what would be in the game and what would
+                                    not- how things should look in-game and how
+                                    they shouldn't. This role entailed collaborating with aaaall parts of the project, so I got a deep & broad perspective on every part of the game making process!
+                                </p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="tag">Directing?</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="contrib-card anim d3">
+                        <div class="flex items-start gap-4">
+                            <div class="icon-box bg-mint-soft/40 mt-0.5">
+                                💠
+                            </div>
+                            <div>
+                                <h3
+                                    class="font-display text-lg text-slate mb-2"
+                                >
+                                    Graphics Programming
+                                </h3>
+                                <p
+                                    class="text-slate-mid text-sm leading-relaxed mb-3"
+                                >
+                                    I created Shaders and tweaked materials to
+                                    fit the shaders that I had made. This
+                                    included making the post processing shader,
+                                    the Miasma shader, and more! Anything that
+                                    had shaders, I created or tweaked.
+                                </p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="tag">Visuals</span>
+                                    <span class="tag"
+                                        >Graphics Programming</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ────────────────────────────────────
+             Contribution Card 3
+             ──────────────────────────────────── -->
+                    <article class="contrib-card anim d4">
+                        <div class="flex items-start gap-4">
+                            <div class="icon-box bg-peach-soft/30 mt-0.5">
+                                💠
+                            </div>
+                            <div>
+                                <h3
+                                    class="font-display text-lg text-slate mb-2"
+                                >
+                                    Game designer
+                                </h3>
+                                <p
+                                    class="text-slate-mid text-sm leading-relaxed mb-3"
+                                >
+                                    I helped birth the concept of Tiny
+                                    Alchemists! I defined the potion crafting,
+                                    came up with unique ingredient combinations,
+                                    and how the map was going to be structured &
+                                    generated. I setup our game design pillars,
+                                    and niche rules that we had to follow for
+                                    the game (e.g., No opposing concepts for
+                                    potion ingredients, the homunculus should be baby-sized).
+
+                                    I also came up with ways to add some
+                                    progression to each playthrough. Aside from
+                                    that, I also defined how the homunculus
+                                    would move in the world, and a bunch of
+                                    other extra systems that didn't make it into
+                                    the vertical slice, such as meta progression
+                                    systems
+                                </p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="tag">Map generation</span>
+                                    <span class="tag">Alchemy concepting</span>
+                                    <span class="tag"
+                                        >Broader game design rules</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="contrib-card anim d2">
+                        <div class="flex items-start gap-4">
+                            <!-- Icon: Replace with any emoji -->
+                            <div class="icon-box bg-sky-pale/50 mt-0.5">💠</div>
+                            <div>
+                                <!-- Contribution Title -->
+                                <h3
+                                    class="font-display text-lg text-slate mb-2"
+                                >
+                                    Public Spokesperson
+                                </h3>
+                                <!-- Contribution Description: Write 2-4 sentences explaining what you did, what technologies you used, and what problems you solved -->
+                                <p
+                                    class="text-slate-mid text-sm leading-relaxed mb-3"
+                                >
+                                    I handled most of the external
+                                    communication! I held pitches, wrote
+                                    speeches, prepared slides, wrote emails,
+                                    booked supervision meetings, and lifted the
+                                    group's concerns with our supervisors. I did
+                                    a lot of talking, basically.
+                                </p>
+                                <!-- Technical tags: Each span is a tag, which can be added or deleted. -->
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="tag" talking a lot></span>
+                                    <span class="tag"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ────────────────────────────────────
+                </div>
+            </section>
+
+            <!-- ═══ BACK BUTTON ═══ -->
+            <div class="text-center anim d5">
+                <a
+                    href="about.html"
+                    class="back-btn inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full border-2 border-sky-pri text-sky-pri font-bold text-sm tracking-wide"
+                >
+                    <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                    >
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                    Back to About Us
+                </a>
+            </div>
+        </main>
+
+        <footer
+            class="relative z-10 border-t border-slate/6 py-8 text-center bg-sky-card/50 mt-8"
+        >
+            <p class="text-slate-light/50 text-xs font-semibold tracking-wider">
+                &copy; 2026 Tiny Alchemists &mdash; A Student Game Project
+                &nbsp;🧪
+            </p>
+        </footer>
+    </body>
+</html>
