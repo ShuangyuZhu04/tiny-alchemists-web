@@ -42,7 +42,7 @@
   </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-    body { background: #F7F9F0; color: #2A3B4D; overflow-x: hidden; }
+    body { background: url('assets/background.png') center center / cover no-repeat fixed; color: #2A3B4D; overflow-x: hidden; }
 
     .bg-blobs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .blob { position: absolute; border-radius: 50%; filter: blur(85px); opacity: .3; }
@@ -80,7 +80,7 @@
     .cta-btn:hover::after { transform: translateX(100%); }
 
     .video-frame {
-      background: #fff; border: 2px dashed #C8DA5E; border-radius: 1.25rem;
+      border: 2px dashed #C8DA5E; border-radius: 1.25rem;
       transition: border-color .3s, box-shadow .3s;
     }
     .video-frame:hover { border-color: #8FA60C; box-shadow: 0 8px 30px rgba(143,166,12,.12); }
@@ -101,7 +101,7 @@
   <div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
 
   <!-- ═══ NAVIGATION ═══ -->
-  <nav class="relative z-30">
+  <nav class="relative z-30 bg-white">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-2.5">
         <img src="assets/potion.png" alt="logo" class="w-8 h-8 object-contain">
@@ -123,18 +123,17 @@
   <main class="relative z-10">
 
     <!-- ═══ HERO SECTION ═══ -->
-    <section class="min-h-[88vh] flex flex-col items-center justify-center text-center px-6 pt-4 pb-20 relative bg-cover bg-center bg-no-repeat" style="background-image: url('assets/background.png');">
-      <div class="absolute inset-0 bg-white/40 z-0"></div>
-      <div class="absolute top-[18%] left-[10%] text-4xl potion-1 select-none z-10">🧪</div>
+    <section class="min-h-[88vh] flex flex-col items-center justify-center text-center px-6 pt-4 pb-20 relative bg-cover bg-center bg-no-repeat">
+      <div class="absolute inset-0 z-0"></div>
+      <!-- <div class="absolute top-[18%] left-[10%] text-4xl potion-1 select-none z-10">🧪</div>
       <div class="absolute top-[25%] right-[12%] text-3xl potion-2 select-none z-10">⚗️</div>
       <div class="absolute top-[55%] left-[20%] text-2xl potion-3 select-none z-10">✨</div>
-      <div class="absolute bottom-[22%] right-[18%] text-3xl potion-1 select-none z-10" style="animation-delay:2s">🫧</div>
+      <div class="absolute bottom-[22%] right-[18%] text-3xl potion-1 select-none z-10" style="animation-delay:2s">🫧</div> -->
       
-      <div class="relative z-10 flex flex-col items-center">
-        <!-- Edit the text of the top small label -->
-        <div class="inline-block px-5 py-1.5 rounded-full bg-sky-pale/60 text-sky-deep text-xs font-bold tracking-wider uppercase mb-6 border border-sky-light/50">
+    <div class="relative z-10 flex flex-col items-center bg-white/90 backdrop-blur-sm rounded-3xl px-8 py-10 shadow-xl max-w-3xl">        <!-- Edit the text of the top small label -->
+        <!-- <div class="inline-block px-5 py-1.5 rounded-full bg-sky-pale/60 text-sky-deep text-xs font-bold tracking-wider uppercase mb-6 border border-sky-light/50">
           Multiplayer Party Game
-        </div>
+        </div> -->
 
         <!-- Edit the text of the main game title -->
         <h1 class="font-display text-6xl sm:text-7xl md:text-[5.5rem] leading-[1.05] text-slate mb-2" style="animation: wiggle 4s ease-in-out infinite">
@@ -142,13 +141,12 @@
         </h1>
 
         <!-- Edit the text of the subtitle -->
-        <p class="font-display text-xl sm:text-2xl text-sky-pri mb-6">Brew Together, Laugh Together!</p>
+        <p class="font-display text-xl sm:text-2xl text-sky-pri mb-6">A Co-op Experimental Potion Game</p>
 
         <!-- Edit the text of the Hero description paragraph -->
         <p class="max-w-lg text-base sm:text-lg text-slate-mid leading-relaxed mb-10">
-          Grab your friends and family for a hilarious potion-brewing game.
-          Toss ingredients, mix magical concoctions, and cause cauldron chaos
-          in this cozy multiplayer party game!
+          Take the role of tiny homunculi and save your greenhouse from the corrupting miasma by brewing magical potions.
+          The best way to test a new concoction is on your friends!
         </p>
 
         <div class="flex flex-col sm:flex-row items-center gap-4">
@@ -169,6 +167,12 @@
 
     <!-- SHOWCASE / TRAILER -->
     <section id="showcase" class="max-w-5xl mx-auto px-6 pb-24 fade-up">
+        <div class="text-center mb-6">
+        <h2 class="font-display text-3xl sm:text-4xl text-black"
+            style="-webkit-text-stroke: 2px white;">
+        Trailer
+        </h2>
+            </div>
       <div class="video-frame aspect-video overflow-hidden">
         <iframe
           class="w-full h-full rounded-[1.1rem]"
@@ -184,11 +188,13 @@
     <!-- CHARACTER SHOWCASE -->
     <section class="max-w-4xl mx-auto px-6 pb-16 fade-up">
       <div class="text-center mb-6">
-        <p class="text-xs font-bold tracking-[.3em] uppercase text-peach/80 mb-2">Meet the Homunculi</p>
-        <h2 class="font-display text-2xl sm:text-3xl text-slate">Character Design</h2>
-      </div>
-      <div class="bg-transparent rounded-2xl p-4 shadow-sm border-2 border-transparent hover:border-sky-pale transition-all">
-        <img src="assets/charactor.png" alt="Tiny Alchemists Character Design — Homunculi with staffs, hats, and spells"
+        <!-- <p class="text-xs font-bold tracking-[.3em] uppercase text-peach/80 mb-2">Meet the Homunculi</p> -->
+        <h2 class="font-display text-3xl sm:text-4xl text-black"
+            style="-webkit-text-stroke: 2px white;">
+        Characters
+        </h2>
+    </div>
+      <div class="bg-white rounded-2xl p-4 shadow-sm border-2 border-transparent hover:border-sky-pale transition-all">        <img src="assets/charactor.png" alt="Tiny Alchemists Character Design — Homunculi with staffs, hats, and spells"
             class="w-full h-auto rounded-xl">
       </div>
     </section>
@@ -197,8 +203,11 @@
     <section class="max-w-5xl mx-auto px-6 pb-28 fade-up">
       <div class="text-center mb-12">
         <!-- Edit the feature section title -->
-        <p class="text-xs font-bold tracking-[.3em] uppercase text-peach/80 mb-2">Why You'll Love It</p>
-        <h2 class="font-display text-3xl sm:text-4xl text-slate">Party Game Highlights</h2>
+        <!-- <p class="text-xs font-bold tracking-[.3em] uppercase text-peach/80 mb-2">Why You'll Love It</p> -->
+        <h2 class="font-display text-3xl sm:text-4xl text-black"
+            style="-webkit-text-stroke: 2px white;">
+        Highlights
+        </h2>
       </div>
       <div class="grid sm:grid-cols-3 gap-6">
 
@@ -206,58 +215,58 @@
         <div class="feature-card p-7 text-center">
           <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-sky-pale/50 flex items-center justify-center text-3xl">🧪</div>
           <h3 class="font-display text-lg text-slate mb-2">Potion Brewing</h3>
-          <p class="text-slate-mid text-sm leading-relaxed">Discover unique potion recipes — from bouncy blobs to magnetic mayhem. Experiment with wild ingredient combos!</p>
+          <p class="text-slate-mid text-sm leading-relaxed">Discover unique potion recipes, from bouncy slimes to magnetic clouds. Experiment with combinations to solve puzzles.</p>
         </div>
 
         <!-- Edit Feature Card 2: Icon, Title, Description -->
         <div class="feature-card p-7 text-center">
           <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-peach-soft/30 flex items-center justify-center text-3xl">👨‍👩‍👧‍👦</div>
-          <h3 class="font-display text-lg text-slate mb-2">Family Friendly</h3>
-          <p class="text-slate-mid text-sm leading-relaxed">Easy to pick up, impossible to put down. Perfect for game nights with friends, family, and players of all ages.</p>
+          <h3 class="font-display text-lg text-slate mb-2">Co-op Adventure</h3>
+          <p class="text-slate-mid text-sm leading-relaxed">Play with 1-4 players in a self-hosted online session. Brew the panacea to save your greenhouse before it is consumed by miasma!</p>
         </div>
 
         <!-- Edit Feature Card 3: Icon, Title, Description -->
         <div class="feature-card p-7 text-center">
           <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-mint-soft/40 flex items-center justify-center text-3xl">💥</div>
-          <h3 class="font-display text-lg text-slate mb-2">Potion Chaos</h3>
-          <p class="text-slate-mid text-sm leading-relaxed">Watch out for potions towards you! Multiple effects will affect you at the same time.</p>
+          <h3 class="font-display text-lg text-slate mb-2">Explosive Chaos</h3>
+          <p class="text-slate-mid text-sm leading-relaxed">Set your friends on fire, intentionally or unintentionally! The only way to find out what each potion does is to try it.</p>
         </div>
       </div>
     </section>
 
     <!-- ═══ STATS BANNER ═══ -->
-    <section class="fade-up">
+    <!-- <section class="fade-up">
       <div class="max-w-5xl mx-auto px-6 pb-28">
-        <div class="rounded-2xl bg-gradient-to-r from-sky-pri via-sky-deep to-sky-pri p-8 sm:p-10 text-white text-center">
+        <div class="rounded-2xl bg-gradient-to-r from-sky-pri via-sky-deep to-sky-pri p-8 sm:p-10 text-white text-center"> -->
           <!-- Edit the stats banner title and four data points -->
-          <h3 class="font-display text-2xl mb-8">Game at a Glance</h3>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <!-- <h3 class="font-display text-2xl mb-8">Game at a Glance</h3> -->
+          <!-- <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+              <div>
+                <div class="font-display text-4xl mb-1">1-4</div>
+                <div class="text-white/80 text-sm font-semibold">Player Co-op</div>
+              </div>
             <div>
-              <div class="font-display text-4xl mb-1">21+</div>
-              <div class="text-white/80 text-sm font-semibold">Unique Potions</div>
+              <div class="font-display text-4xl mb-1">8</div>
+              <div class="text-white/80 text-sm font-semibold">Ingredients</div>
             </div>
             <div>
-              <div class="font-display text-4xl mb-1">4</div>
-              <div class="text-white/80 text-sm font-semibold">Players Online</div>
+              <div class="font-display text-4xl mb-1">5</div>
+              <div class="text-white/80 text-sm font-semibold">Regions</div>
             </div>
             <div>
-              <div class="font-display text-4xl mb-1">∞</div>
-              <div class="text-white/80 text-sm font-semibold">Laughs Per Round</div>
-            </div>
-            <div>
-              <div class="font-display text-4xl mb-1">💥</div>
-              <div class="text-white/80 text-sm font-semibold">Explosions Guaranteed</div>
+              <div class="font-display text-4xl mb-1">100+</div>
+              <div class="text-white/80 text-sm font-semibold">Potions</div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  </main>
+  </main> -->
 
   <!-- ═══ FOOTER ═══ -->
-  <footer class="relative z-10 border-t border-slate/6 py-8 text-center bg-sky-card/50">
+  <footer class="relative z-10 border-t border-slate/6 py-8 text-center bg-sky-card">
     <!-- Edit the footer text -->
-    <p class="text-slate-light/50 text-xs font-semibold tracking-wider">&copy; 2026 Tiny Alchemists &mdash; A Student Game Project &nbsp;🧪</p>
+    <p class="text-slate-light text-xs font-semibold tracking-wider">&copy; 2026 Tiny Alchemists</p>
   </footer>
 
   <script>
